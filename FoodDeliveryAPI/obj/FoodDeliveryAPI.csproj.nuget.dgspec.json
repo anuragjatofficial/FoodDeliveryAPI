@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Anurag Choudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.csproj": {}
+    "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Anurag Choudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.csproj": {
+    "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Anurag Choudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.csproj",
+        "projectUniqueName": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.csproj",
         "projectName": "FoodDeliveryAPI",
-        "projectPath": "C:\\Users\\Anurag Choudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.csproj",
-        "packagesPath": "C:\\Users\\Anurag Choudhary\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Anurag Choudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\obj\\",
+        "projectPath": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.csproj",
+        "packagesPath": "C:\\Users\\AnuragChoudhary\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Anurag Choudhary\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AnuragChoudhary\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +43,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.1, )"
             },
             "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter": {
               "target": "Package",
@@ -100,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

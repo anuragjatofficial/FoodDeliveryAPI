@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodDeliveryAPI.Models
 {
-   // [NotMapped]
+    [Index(nameof(UserName),IsUnique =true)]
+    [Index(nameof(UserEmail),IsUnique =true)]
     public abstract class User
     {
         [Key]

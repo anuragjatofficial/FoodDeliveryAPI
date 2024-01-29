@@ -1,7 +1,9 @@
 ﻿using FoodDeliveryAPI.Data;
+using FoodDeliveryAPI.DTO;
 using FoodDeliveryAPI.Exceptions;
 using FoodDeliveryAPI.Models;
 using FoodDeliveryAPI.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,11 +20,21 @@ namespace FoodDeliveryAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<DeliveryPerson>> AddDeliveryPerson(DeliveryPerson deliveryPerson)
+        [AllowAnonymous]
+        public async Task<ActionResult<DeliveryPerson>> AddDeliveryPerson(DeliveryPersonDTO deliveryPerson)
         {
             try
             {
-                return Created("/deliveryperson",await _deliveryPersonService.AddDeliveryPerson(deliveryPerson));
+                return Created("/deliveryperson",await _deliveryPersonService
+                    .AddDeliveryPerson(new DeliveryPerson()
+                    {
+                        UserEmail = deliveryPerson.UserEmail,
+                        UserName = deliveryPerson.UserName,
+                        Password = deliveryPerson.Password,
+                        CreatedAt = DateTime.Now,
+                        Role = Role.DELIVERY_PERSON,
+                    })
+                );
             }
             catch (Exception ex)
             {
@@ -30,7 +42,8 @@ namespace FoodDeliveryAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")] 
+        [HttpGet("{id}")]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
         public async Task<ActionResult<DeliveryPerson>> GetDeliveryPersonById(Guid id)
         {
             try
@@ -48,6 +61,7 @@ namespace FoodDeliveryAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
         public async Task<ActionResult<List<DeliveryPerson>>> GetAllDeliveryPersons()
         {
             try

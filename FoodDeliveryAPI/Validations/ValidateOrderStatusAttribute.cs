@@ -10,7 +10,7 @@ namespace FoodDeliveryAPI.Validations
            ValidationContext validationContext
         )
         {
-            if (value!= OrderStatus.PLACED|| value != OrderStatus.CANCELLED || value != OrderStatus.PREPARED || value != OrderStatus.REACHED || value != OrderStatus.PICKEDUP || value != OrderStatus.ASSIGNED || value != OrderStatus.DELIVERED)
+            if (value!= OrderStatus.PLACED|| value != OrderStatus.CANCELLED || value != OrderStatus.PREPARED || value != OrderStatus.REACHED || value != OrderStatus.PICKEDUP || value != OrderStatus.ASSIGNED || value != OrderStatus.DELIVERED || value != OrderStatus.RECEIVED)
             {
                 return new ValidationResult("Invalid order status");
             }

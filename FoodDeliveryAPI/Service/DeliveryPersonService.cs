@@ -32,7 +32,7 @@ namespace FoodDeliveryAPI.Service
 
         public async Task<DeliveryPerson> GetDeliveryPersonById(Guid deliveryPersonId)
         {
-            return await _context.DeliveryPersons.FirstOrDefaultAsync(e=>e.UserId==deliveryPersonId) ?? throw new NoDeliveyPersonFoundException($"Can't find any deliveryperson with id {deliveryPersonId}");
+            return await _context.DeliveryPersons.Include(e=>e.AllOrders).FirstOrDefaultAsync(e=>e.UserId==deliveryPersonId) ?? throw new NoDeliveyPersonFoundException($"Can't find any deliveryperson with id {deliveryPersonId}");
         }
     }
 }

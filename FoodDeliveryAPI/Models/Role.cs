@@ -2,10 +2,10 @@
 {
     public class Role
     {
-        public static readonly string USER = "USER";
-        public static readonly string DELIVERY_PERSON = "DELIVERY_PERSON";
-        public static readonly string RESTAURANT_AGENT = "RESTAURANT_AGENT";
-        public static readonly string ADMIN = "ADMIN";
-        public static readonly string SUPER_ADMIN = "SUPER_ADMIN";
+        public const string USER = "USER";
+        public const string DELIVERY_PERSON = "DELIVERY_PERSON";
+        public const string RESTAURANT_AGENT = "RESTAURANT_AGENT";
+        public const string ADMIN = "ADMIN";
+        public const string SUPER_ADMIN = "SUPER_ADMIN";
     }
 }

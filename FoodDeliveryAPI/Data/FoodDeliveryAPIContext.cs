@@ -21,5 +21,8 @@ namespace FoodDeliveryAPI.Data
 
         public DbSet<Restaurant> Restaurants { get; set;}
 
+        public DbSet<Admin> Admins { get; set; }
+
     }
+
 }

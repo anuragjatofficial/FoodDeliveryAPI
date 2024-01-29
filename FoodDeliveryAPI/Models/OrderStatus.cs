@@ -2,6 +2,7 @@
 {
     public class OrderStatus
     {
+        public static readonly string RECEIVED = "RECEIVED";
         public static readonly string PLACED = "PLACED";
         public static readonly string ASSIGNED = "ASSIGNED";
         public static readonly string PREPARED = "PREPARED";

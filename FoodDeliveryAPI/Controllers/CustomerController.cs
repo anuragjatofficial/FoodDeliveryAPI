@@ -1,6 +1,8 @@
-﻿using FoodDeliveryAPI.Exceptions;
+﻿using FoodDeliveryAPI.DTO;
+using FoodDeliveryAPI.Exceptions;
 using FoodDeliveryAPI.Models;
 using FoodDeliveryAPI.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodDeliveryAPI.Controllers
@@ -14,6 +16,8 @@ namespace FoodDeliveryAPI.Controllers
         {
             _customerService = customerService;
         }
+
+        [Authorize(Roles =$"{Role.ADMIN},{Role.SUPER_ADMIN}")]
         [HttpGet("{Id}")]
         public async Task<ActionResult<Customer>> GetCustomerById(string Id)
         {
@@ -26,7 +30,9 @@ namespace FoodDeliveryAPI.Controllers
                 return NotFound(ex.Message);
             }
         }
+
         [HttpGet]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
         public ActionResult<IEnumerable<Customer>> GetAllCustomers()
         {
             try
@@ -38,12 +44,24 @@ namespace FoodDeliveryAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost]
-        public async Task<ActionResult<Customer>> AddCustomer(Customer customer) 
+        [HttpPost("/signup")]
+        [AllowAnonymous]
+        public async Task<ActionResult<Customer>> AddCustomer(CustomerDTO customer) 
         {
             try
             {
-                return Accepted(await _customerService.AddCustomer(customer));
+                return Accepted(
+                    await _customerService
+                            .AddCustomer(
+                                new Customer() {
+                                    UserName=customer.UserName,
+                                    UserEmail=customer.UserEmail,
+                                    Password=customer.Password,
+                                    Role=Role.USER,
+                                    CreatedAt=DateTime.Now 
+                                }
+                              )
+                );
             }
             catch (InvalidValueException ex)
             {

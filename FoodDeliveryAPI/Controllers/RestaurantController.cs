@@ -10,6 +10,7 @@ using FoodDeliveryAPI.Models;
 using FoodDeliveryAPI.Service;
 using FoodDeliveryAPI.Exceptions;
 using FoodDeliveryAPI.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FoodDeliveryAPI.Controllers
 {
@@ -29,6 +30,7 @@ namespace FoodDeliveryAPI.Controllers
 
         // GET: api/Restaurant
         [HttpGet]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
         public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurants()
         {
             try
@@ -47,6 +49,7 @@ namespace FoodDeliveryAPI.Controllers
 
         // GET: api/Restaurant/5
         [HttpGet("{id}")]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
         public async Task<ActionResult<Restaurant>> GetRestaurant(Guid id)
         {
             try
@@ -61,6 +64,7 @@ namespace FoodDeliveryAPI.Controllers
         // PUT: api/Restaurant/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
         public async Task<IActionResult> PutRestaurant(Guid id, Restaurant restaurant)
         {
             if (id != restaurant.RestaurantId)
@@ -92,11 +96,19 @@ namespace FoodDeliveryAPI.Controllers
         // POST: api/Restaurant
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Restaurant>> PostRestaurant(Restaurant restaurant)
+        [AllowAnonymous]
+        public async Task<ActionResult<Restaurant>> PostRestaurant(RestaurantDTO restaurant)
         {
             try
             {
-                return Created("api/Restaurant",await _restaurantService.AddRestaurant(restaurant));
+                return Created("api/Restaurant",await _restaurantService
+                    .AddRestaurant(new Restaurant()
+                    {
+                        RestaurantName = restaurant.RestaurantName,
+                        Address = restaurant.Address,
+                        IsClosed = false,
+                    })
+                );
             }
             catch (Exception ex)
             {
@@ -106,6 +118,7 @@ namespace FoodDeliveryAPI.Controllers
 
         // DELETE: api/Restaurant/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
         public async Task<IActionResult> DeleteRestaurant(Guid id)
         {
             var restaurant = await _context.Restaurants.FindAsync(id);
@@ -125,7 +138,8 @@ namespace FoodDeliveryAPI.Controllers
             return _context.Restaurants.Any(e => e.RestaurantId == id);
         }
 
-        [HttpPatch("{RestaurantId}")]
+        [HttpPatch("{RestaurantId}/status")]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN},{Role.RESTAURANT_AGENT}")]
         public async Task<ActionResult<String>> ChangeRestaurantStatus(bool status,Guid RestaurantId)
         {
             try
@@ -142,8 +156,8 @@ namespace FoodDeliveryAPI.Controllers
             }
         }
 
-        [HttpPost("/addItems")]
-
+        [HttpPost("addItems")]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN},{Role.RESTAURANT_AGENT}")]
         public async Task<ActionResult<Item>> AddItem(ItemDTO item)
         {
             try

@@ -18,7 +18,7 @@ namespace FoodDeliveryAPI.Service
 
         public async Task<Customer> GetCustomerById(string id)
         {
-            return await _context.Customers.FirstOrDefaultAsync(e=>e.UserId.ToString()==id) ?? throw new CustomerNotFoundException($"can't find any customer with id {id}") ;
+            return await _context.Customers.Include(e=>e.Orders).FirstOrDefaultAsync(e=>e.UserId.ToString()==id) ?? throw new CustomerNotFoundException($"can't find any customer with id {id}") ;
         }
 
         public async Task<Customer> AddCustomer(Customer customer)

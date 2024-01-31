@@ -4,33 +4,56 @@ using FoodDeliveryAPI.DataAcces.Data;
 using FoodDeliveryAPI.DataAcces.Models;
 using FoodDeliveryAPI.Domain.DTO;
 using FoodDeliveryAPI.Domain.Exceptions;
+using AutoMapper;
 
 namespace FoodDeliveryAPI.Domain.Service
 {
     public class OrderService : IOrderService
     {
         private readonly FoodDeliveryAPIContext _context;
+        private readonly IMapper _mapper;
 
-        public OrderService(FoodDeliveryAPIContext context)
+        public OrderService(FoodDeliveryAPIContext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public async Task<Order> PlaceOrder(OrderDTO order)
+        public async Task<OrderDTO> PlaceOrder(OrderInput order)
         {
             var restaurant = _context.Restaurants.FirstOrDefault(u=>u.RestaurantId==order.RestaurantId) ?? throw new RestaurantNotFoundException($"can't find any restaurant with id {order.RestaurantId}");
             var customer = _context.Customers.FirstOrDefault(u => u.UserId == order.CustomerId) ?? throw new CustomerNotFoundException($"can't find customer with id {order.CustomerId}");
+            
+            // check if restaurant is closed or not 
+
             if (restaurant.IsClosed)
             {
                 throw new RestaurantClosedException($"can't place order because restaurant is closed");
             }
+
             var deliveryPerson = AssignDeliveryPerson();
-            List<Item> items = new List<Item>();
+              List<Item> items = new List<Item>();
+
+            
+
             foreach(Guid Id in order.ItemsId)
             {
-                items.Add(FindOrderItemById(Id));
+                // LINQ query to find out each item from restaurant 
+
+                IQueryable<Item> it = from item in _context.Items 
+                                      where item.ItemId == Id 
+                                      where item.RestaurantId==order.RestaurantId 
+                                      where item.isOutOfStock == false 
+                                      select item;
+                
+                // getting each result item if item not found it throws exception that is handled in controllor 
+                var i = it.FirstOrDefault() ?? throw new ItemNotFoundException($"can't find any item with id {Id} please remove to continue placing order");
+                
+                // adding each item to list 
+                items.Add( i );
             }
 
+            // creating new order instance to save data
 
             Order o = new Order()
             {
@@ -40,18 +63,16 @@ namespace FoodDeliveryAPI.Domain.Service
                 DeliveryPersonId = deliveryPerson.UserId,
                 OrderStatus = OrderStatus.RECEIVED
             };
+
+            // adding order to deliveryPerson's all orders 
             deliveryPerson.AllOrders.Add(o);
+
+            // adding order to all customer orders 
             customer.Orders.Add(o);
+
             await _context.Orders.AddAsync(o);
             await _context.SaveChangesAsync(); 
-            return o;
-        }
-
-        // linq 
-
-        public Item FindOrderItemById(Guid itemId)
-        {
-            return _context.Items.FirstOrDefault(o=>o.ItemId==itemId) ?? throw new ItemNotFoundException($"can't find any item with id {itemId}");
+            return _mapper.Map<OrderDTO>(o);
         }
 
         private DeliveryPerson AssignDeliveryPerson()
@@ -105,21 +126,42 @@ namespace FoodDeliveryAPI.Domain.Service
             throw new StatusAlreadyUpdatedException($"can't update status from {order.OrderStatus} to {status}");
         }
 
-        public async Task<Order> GetOrderByID(Guid orderId)
+        public async Task<OrderDTO> GetOrderByID(Guid orderId)
         {
-            return await _context
+            return  _mapper.Map<OrderDTO>(await _context
                             .Orders
-                            .Include(a=>a.Items)
-                            .FirstOrDefaultAsync(o => o.OrderId==orderId)?? throw new OrderNotFoundException($"can't find any order with id {orderId}");
+                            .Include(a => a.Items)
+                            .FirstOrDefaultAsync(o => o.OrderId == orderId) ?? throw new OrderNotFoundException($"can't find any order with id {orderId}"));
         }
 
-        public async Task<List<Order>> GetAllOrders()
+        public async Task<List<OrderDTO>> GetAllOrders()
         {
-            return await _context
+            return  await _context
                             .Orders
                             .Include(a => a.Items)
                             .Include(a=>a.Restaurant)
+                            .Select(o=>_mapper.Map<OrderDTO>(o))
                             .ToListAsync();
         }
+
+        public async Task<List<OrderDTO>> GetAllOrdersPlaced(Guid userId)
+        {
+            return await _context
+                            .Orders
+                            .Where(o=>o.CustomerId == userId)
+                            .Select(o=>_mapper.Map<OrderDTO>(o))
+                            .ToListAsync();
+        }
+
+        public async Task<List<OrderDTO>> GetActiveOrders(Guid userId)
+        {
+            return await _context
+                            .Orders
+                            .Where (o=>o.CustomerId == userId)
+                            .Where(o=>o.OrderStatus != OrderStatus.CANCELLED && o.OrderStatus != OrderStatus.DELIVERED)
+                            .Select(o=>_mapper.Map<OrderDTO>(o))
+                            .ToListAsync();
+        }
+
     }
 }

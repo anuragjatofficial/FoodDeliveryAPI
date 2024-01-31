@@ -12,14 +12,16 @@ namespace FoodDeliveryAPI.Controllers
     public class CustomerController : ControllerBase
     {
         private ICustomerService _customerService;
-        public CustomerController (ICustomerService customerService)
+        private IOrderService _orderService;
+        public CustomerController (ICustomerService customerService,IOrderService orderService)
         {
             _customerService = customerService;
+            _orderService = orderService;
         }
 
         [Authorize(Roles =$"{Role.ADMIN},{Role.SUPER_ADMIN}")]
         [HttpGet("{Id}")]
-        public async Task<ActionResult<Customer>> GetCustomerById(string Id)
+        public async Task<ActionResult<CustomerDTO>> GetCustomerById(string Id)
         {
             try
             {
@@ -33,7 +35,7 @@ namespace FoodDeliveryAPI.Controllers
 
         [HttpGet]
         [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
-        public ActionResult<IEnumerable<Customer>> GetAllCustomers()
+        public ActionResult<IEnumerable<CustomerDTO>> GetAllCustomers()
         {
             try
             {
@@ -46,7 +48,7 @@ namespace FoodDeliveryAPI.Controllers
         }
         [HttpPost("/signup")]
         [AllowAnonymous]
-        public async Task<ActionResult<Customer>> AddCustomer(CustomerDTO customer) 
+        public async Task<ActionResult<CustomerDTO>> AddCustomer(UserDTO user) 
         {
             try
             {
@@ -54,9 +56,9 @@ namespace FoodDeliveryAPI.Controllers
                     await _customerService
                             .AddCustomer(
                                 new Customer() {
-                                    UserName=customer.UserName,
-                                    UserEmail=customer.UserEmail,
-                                    Password=customer.Password,
+                                    UserName= user.UserName,
+                                    UserEmail= user.UserEmail,
+                                    Password=user.Password,
                                     Role=Role.USER,
                                     CreatedAt=DateTime.Now 
                                 }
@@ -68,6 +70,12 @@ namespace FoodDeliveryAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("orders/active")]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN},{Role.USER}")]
+        public async Task<ActionResult<List<OrderDTO>>> GetActiveOrders(Guid customerId) => 
+            Ok(await _orderService.GetActiveOrders(customerId));
+
 
     }
 }

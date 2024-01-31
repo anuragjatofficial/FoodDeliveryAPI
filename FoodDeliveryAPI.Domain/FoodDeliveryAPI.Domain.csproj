@@ -15,4 +15,8 @@
     <ProjectReference Include="..\FoodDeliveryAPI.DataAcces\FoodDeliveryAPI.DataAcces.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Profiles\" />
+  </ItemGroup>
+
 </Project>

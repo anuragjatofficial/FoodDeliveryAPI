@@ -12,11 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodDeliveryAPI.DataAcces.Migrations
 {
     [DbContext(typeof(FoodDeliveryAPIContext))]
-<<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/20240130081635_InitialCreate.Designer.cs
     [Migration("20240130081635_InitialCreate")]
-========
-    [Migration("20240129074503_InitialCreate")]
->>>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI.DataAcces/Migrations/20240129074503_InitialCreate.Designer.cs
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -62,7 +58,6 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-<<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/20240130081635_InitialCreate.Designer.cs
                     b.ToTable("Admins");
                 });
 
@@ -99,8 +94,6 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-========
->>>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI.DataAcces/Migrations/20240129074503_InitialCreate.Designer.cs
                     b.ToTable("Customers");
                 });
 
@@ -248,31 +241,19 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
 
             modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Order", b =>
                 {
-<<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/20240130081635_InitialCreate.Designer.cs
                     b.HasOne("FoodDeliveryAPI.Domain.Models.Customer", "Customer")
-========
-                    b.HasOne("FoodDeliveryAPI.Models.Customer", "Customer")
->>>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI.DataAcces/Migrations/20240129074503_InitialCreate.Designer.cs
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/20240130081635_InitialCreate.Designer.cs
                     b.HasOne("FoodDeliveryAPI.Domain.Models.DeliveryPerson", "DeliveryPerson")
-========
-                    b.HasOne("FoodDeliveryAPI.Models.DeliveryPerson", "DeliveryPerson")
->>>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI.DataAcces/Migrations/20240129074503_InitialCreate.Designer.cs
                         .WithMany("AllOrders")
                         .HasForeignKey("DeliveryPersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/20240130081635_InitialCreate.Designer.cs
                     b.HasOne("FoodDeliveryAPI.Domain.Models.Restaurant", "Restaurant")
-========
-                    b.HasOne("FoodDeliveryAPI.Models.Restaurant", "Restaurant")
->>>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI.DataAcces/Migrations/20240129074503_InitialCreate.Designer.cs
                         .WithMany()
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -285,29 +266,17 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.Navigation("Restaurant");
                 });
 
-<<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/20240130081635_InitialCreate.Designer.cs
             modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Customer", b =>
-========
-            modelBuilder.Entity("FoodDeliveryAPI.Models.Customer", b =>
->>>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI.DataAcces/Migrations/20240129074503_InitialCreate.Designer.cs
                 {
                     b.Navigation("Orders");
                 });
 
-<<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/20240130081635_InitialCreate.Designer.cs
             modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.DeliveryPerson", b =>
-========
-            modelBuilder.Entity("FoodDeliveryAPI.Models.DeliveryPerson", b =>
->>>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI.DataAcces/Migrations/20240129074503_InitialCreate.Designer.cs
                 {
                     b.Navigation("AllOrders");
                 });
 
-<<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/20240130081635_InitialCreate.Designer.cs
             modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Order", b =>
-========
-            modelBuilder.Entity("FoodDeliveryAPI.Models.Order", b =>
->>>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI.DataAcces/Migrations/20240129074503_InitialCreate.Designer.cs
                 {
                     b.Navigation("Items");
                 });

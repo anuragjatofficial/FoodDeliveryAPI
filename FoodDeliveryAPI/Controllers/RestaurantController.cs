@@ -31,7 +31,7 @@ namespace FoodDeliveryAPI.Controllers
         // GET: api/Restaurant
         [HttpGet]
         [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
-        public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurants()
+        public async Task<ActionResult<IEnumerable<RestaurantDTO>>> GetRestaurants()
         {
             try
             {

@@ -6,6 +6,7 @@ using FoodDeliveryAPI.Domain.Validations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 namespace FoodDeliveryAPI.Controllers
 {
@@ -22,7 +23,7 @@ namespace FoodDeliveryAPI.Controllers
 
         [HttpPost]
         [Authorize(Roles = $"{Role.USER},{Role.SUPER_ADMIN},{Role.ADMIN}")]
-        public async Task<ActionResult<Order>> PlaceOrder([FromBody] OrderDTO order)
+        public async Task<ActionResult<OrderDTO>> PlaceOrder([FromBody] OrderInput order)
         {
             try
             {
@@ -37,10 +38,10 @@ namespace FoodDeliveryAPI.Controllers
 
         [HttpPatch("update/{orderId}")]
         [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN},{Role.DELIVERY_PERSON}")]
-        public async Task<ActionResult<Order>> UpdateStatus(Guid orderId,[ValidateOrderStatus]string status)
+        public async Task<ActionResult<string>> UpdateStatus(Guid orderId,[ValidateOrderStatus]string status)
         {
             try
-            {
+            { 
                 return Accepted( await _orderService.UpdateOrderStatus(status, orderId));
             }
             catch (OrderNotFoundException ex)
@@ -55,7 +56,7 @@ namespace FoodDeliveryAPI.Controllers
 
         [HttpGet]
         [Authorize(Roles=$"{Role.ADMIN},{Role.SUPER_ADMIN}")]
-        public async Task<ActionResult<Order>> GetAllOrders()
+        public async Task<ActionResult<OrderDTO>> GetAllOrders()
         {
             return Ok(await _orderService.GetAllOrders());
         }
@@ -63,7 +64,7 @@ namespace FoodDeliveryAPI.Controllers
         [HttpGet("{id}")]
 
         [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
-        public async Task<ActionResult<Order>> GetOrderById(Guid id)
+        public async Task<ActionResult<OrderDTO>> GetOrderById(Guid id)
         {
             try
             {
@@ -78,7 +79,5 @@ namespace FoodDeliveryAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-
     }
 }

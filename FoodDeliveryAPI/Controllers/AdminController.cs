@@ -19,17 +19,17 @@ namespace FoodDeliveryAPI.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult<Admin> CreateAdmin(AdminDTO admin)
+        public ActionResult<Admin> CreateAdmin(UserDTO user)
         {
             try
             {
                 return Created("/admin", _adminService.CreateAdmin(new Admin()
                 {
                     CreatedAt = DateTime.Now,
-                    Password = admin.Password,
+                    Password = user.Password,
                     Role = Role.ADMIN,
-                    UserEmail = admin.UserEmail,
-                    UserName = admin.UserName,
+                    UserEmail = user.UserEmail,
+                    UserName = user.UserName,
                 }));
             }catch (Exception ex)
             {

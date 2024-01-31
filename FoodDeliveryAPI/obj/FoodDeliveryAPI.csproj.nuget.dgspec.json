@@ -4,7 +4,6 @@
     "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.csproj": {}
   },
   "projects": {
-<<<<<<< HEAD
     "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.DataAcces\\FoodDeliveryAPI.DataAcces.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -13,16 +12,6 @@
         "projectPath": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.DataAcces\\FoodDeliveryAPI.DataAcces.csproj",
         "packagesPath": "C:\\Users\\AnuragChoudhary\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.DataAcces\\obj\\",
-=======
-    "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.csproj",
-        "projectName": "FoodDeliveryAPI",
-        "projectPath": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.csproj",
-        "packagesPath": "C:\\Users\\AnuragChoudhary\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\obj\\",
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\AnuragChoudhary\\AppData\\Roaming\\NuGet\\NuGet.Config",

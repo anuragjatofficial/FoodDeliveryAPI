@@ -1,17 +1,9 @@
-<<<<<<< HEAD:FoodDeliveryAPI.Domain/Service/AdminService.cs
 ﻿
 using FoodDeliveryAPI.DataAcces.Data;
 using FoodDeliveryAPI.DataAcces.Models;
 using FoodDeliveryAPI.Domain.Exceptions;
 
 namespace FoodDeliveryAPI.Domain.Service
-=======
-﻿using FoodDeliveryAPI.Data;
-using FoodDeliveryAPI.Exceptions;
-using FoodDeliveryAPI.Models;
-
-namespace FoodDeliveryAPI.Service
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI/Service/AdminService.cs
 {
     public class AdminService : IAdminService
     {

@@ -8354,11 +8354,8 @@
     "net8.0": [
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
-<<<<<<< HEAD
       "FoodDeliveryAPI.DataAcces >= 1.0.0",
       "FoodDeliveryAPI.Domain >= 1.0.0",
-=======
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.1",
       "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter >= 8.0.1",
       "Microsoft.AspNetCore.OpenApi >= 8.0.1",

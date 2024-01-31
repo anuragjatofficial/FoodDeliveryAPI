@@ -1,11 +1,7 @@
-<<<<<<< HEAD
+using AutoMapper;
 using FoodDeliveryAPI.DataAcces.Data;
 using FoodDeliveryAPI.Domain;
 using FoodDeliveryAPI.Domain.Service;
-=======
-using FoodDeliveryAPI.Data;
-using FoodDeliveryAPI.Service;
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -31,12 +27,9 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IDeliveryPersonService, DeliveryPersonService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
-<<<<<<< HEAD
 
 // to exclude null from every json body
 
-=======
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
@@ -51,11 +44,8 @@ builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
     build.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
 }));
 
-<<<<<<< HEAD
 // to add jwtbearer as authentication scheme 
 
-=======
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655
 builder.Services.AddAuthentication(item =>
 {
     item.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -76,11 +66,8 @@ builder.Services.AddAuthentication(item =>
     };
 });
 
-<<<<<<< HEAD
 // swagger authentication defination 
 
-=======
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655
 builder.Services.AddSwaggerGen(options =>
 {
     options
@@ -113,13 +100,10 @@ builder.Services.AddSwaggerGen(options =>
         });
 });
 
-<<<<<<< HEAD
 // added assembly to configure automapper 
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-=======
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -131,11 +115,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication();
 
-<<<<<<< HEAD
 // applying cors policy 
 
-=======
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655
 app.UseCors("corspolicy");
 
 app.UseAuthorization();

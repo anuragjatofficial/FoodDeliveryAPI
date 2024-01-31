@@ -13,23 +13,27 @@ namespace FoodDeliveryAPI.Controllers
     public class DeliveryPersonController : ControllerBase
     {
         private IDeliveryPersonService _deliveryPersonService;
-        public DeliveryPersonController (IDeliveryPersonService deliveryPersonService)
+
+        private IOrderService _orderService;
+
+        public DeliveryPersonController (IDeliveryPersonService deliveryPersonService,IOrderService orderService)
         {
             _deliveryPersonService = deliveryPersonService;
+            _orderService = orderService;
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<DeliveryPerson>> AddDeliveryPerson(DeliveryPersonDTO deliveryPerson)
+        public async Task<ActionResult<DeliveryPersonDTO>> AddDeliveryPerson(UserDTO user)
         {
             try
             {
                 return Created("/deliveryperson",await _deliveryPersonService
                     .AddDeliveryPerson(new DeliveryPerson()
                     {
-                        UserEmail = deliveryPerson.UserEmail,
-                        UserName = deliveryPerson.UserName,
-                        Password = deliveryPerson.Password,
+                        UserEmail = user.UserEmail,
+                        UserName = user.UserName,
+                        Password = user.Password,
                         CreatedAt = DateTime.Now,
                         Role = Role.DELIVERY_PERSON,
                     })
@@ -43,7 +47,7 @@ namespace FoodDeliveryAPI.Controllers
 
         [HttpGet("{id}")]
         [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
-        public async Task<ActionResult<DeliveryPerson>> GetDeliveryPersonById(Guid id)
+        public async Task<ActionResult<DeliveryPersonDTO>> GetDeliveryPersonById(Guid id)
         {
             try
             {
@@ -61,7 +65,7 @@ namespace FoodDeliveryAPI.Controllers
 
         [HttpGet]
         [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
-        public async Task<ActionResult<List<DeliveryPerson>>> GetAllDeliveryPersons()
+        public async Task<ActionResult<List<DeliveryPersonDTO>>> GetAllDeliveryPersons()
         {
             try
             {
@@ -74,7 +78,12 @@ namespace FoodDeliveryAPI.Controllers
             
         }
 
-
+        [HttpGet("orders/active")]
+        [Authorize(Roles=$"{Role.DELIVERY_PERSON},{Role.SUPER_ADMIN},{Role.ADMIN}")]
+        public async Task<ActionResult<List<OrderDTO>>> GetActiveOrders(Guid userId)
+        {
+            return Ok(await _orderService.GetActiveOrders(userId));
+        }
 
     }
 }

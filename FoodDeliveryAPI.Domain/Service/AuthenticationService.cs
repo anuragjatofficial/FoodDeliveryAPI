@@ -1,25 +1,14 @@
-<<<<<<< HEAD:FoodDeliveryAPI.Domain/Service/AuthenticationService.cs
 ﻿using FoodDeliveryAPI.DataAcces.Data;
 using FoodDeliveryAPI.DataAcces.Models;
 using FoodDeliveryAPI.Domain.DTO;
 using FoodDeliveryAPI.Domain.Exceptions;
 using Microsoft.Extensions.Configuration;
-=======
-﻿using FoodDeliveryAPI.Data;
-using FoodDeliveryAPI.DTO;
-using FoodDeliveryAPI.Exceptions;
-using FoodDeliveryAPI.Models;
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI/Service/AuthenticationService.cs
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-<<<<<<< HEAD:FoodDeliveryAPI.Domain/Service/AuthenticationService.cs
 namespace FoodDeliveryAPI.Domain.Service
-=======
-namespace FoodDeliveryAPI.Service
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI/Service/AuthenticationService.cs
 {
     public class AuthenticationService : IAuthenticationService
     {
@@ -35,11 +24,7 @@ namespace FoodDeliveryAPI.Service
 
         public Token GenerateToken(User user)
         {
-<<<<<<< HEAD:FoodDeliveryAPI.Domain/Service/AuthenticationService.cs
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"] ?? ""));
-=======
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI/Service/AuthenticationService.cs
 
             var credentials = new SigningCredentials(securityKey,SecurityAlgorithms.HmacSha256);
 

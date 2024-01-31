@@ -529,7 +529,6 @@ C:\Users\Anurag Choudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\ne
 C:\Users\Anurag Choudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.pdb
 C:\Users\Anurag Choudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.genruntimeconfig.cache
 C:\Users\Anurag Choudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\ref\FoodDeliveryAPI.dll
-<<<<<<< HEAD
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.csproj.AssemblyReference.cache
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.AssemblyInfoInputs.cache
@@ -537,8 +536,6 @@ C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryA
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.csproj.CoreCompileInputs.cache
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.sourcelink.json
-=======
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\appsettings.json
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\FoodDeliveryAPI.staticwebassets.runtime.json
@@ -552,10 +549,7 @@ C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryA
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\Azure.Identity.dll
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\Humanizer.dll
-<<<<<<< HEAD
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-=======
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Components.dll
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Forms.dll
@@ -787,21 +781,10 @@ C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryA
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
-<<<<<<< HEAD
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\FoodDeliveryAPI.DataAcces.dll
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\FoodDeliveryAPI.Domain.dll
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\FoodDeliveryAPI.DataAcces.pdb
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\FoodDeliveryAPI.Domain.pdb
-=======
-C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.csproj.AssemblyReference.cache
-C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.AssemblyInfoInputs.cache
-C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.AssemblyInfo.cs
-C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.csproj.CoreCompileInputs.cache
-C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.sourcelink.json
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\staticwebassets\msbuild.FoodDeliveryAPI.Microsoft.AspNetCore.StaticWebAssets.props
@@ -816,7 +799,4 @@ C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryA
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.pdb
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.genruntimeconfig.cache
 C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\ref\FoodDeliveryAPI.dll
-<<<<<<< HEAD
-=======
-C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655
+C:\Users\AnuragChoudhary\Downloads\FoodDeliveryAPI\FoodDeliveryAPI\FoodDeliveryAPI\obj\Debug\net8.0\FoodDeliveryAPI.MvcApplicationPartsAssemblyInfo.cs

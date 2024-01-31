@@ -22,10 +22,7 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
             modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Admin", b =>
-=======
-            modelBuilder.Entity("FoodDeliveryAPI.Models.Admin", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
@@ -58,44 +55,6 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-                    b.ToTable("Admins");
-                });
-
-            modelBuilder.Entity("FoodDeliveryAPI.Models.Customer", b =>
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
-                {
-                    b.Property<Guid>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId");
-
-                    b.HasIndex("UserEmail")
-                        .IsUnique();
-
-                    b.HasIndex("UserName")
-                        .IsUnique();
-
-<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
                     b.ToTable("Admins");
                 });
 
@@ -132,8 +91,6 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-=======
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
                     b.ToTable("Customers");
                 });
 
@@ -281,31 +238,19 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
 
             modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Order", b =>
                 {
-<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
                     b.HasOne("FoodDeliveryAPI.Domain.Models.Customer", "Customer")
-=======
-                    b.HasOne("FoodDeliveryAPI.Models.Customer", "Customer")
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
                     b.HasOne("FoodDeliveryAPI.Domain.Models.DeliveryPerson", "DeliveryPerson")
-=======
-                    b.HasOne("FoodDeliveryAPI.Models.DeliveryPerson", "DeliveryPerson")
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
                         .WithMany("AllOrders")
                         .HasForeignKey("DeliveryPersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
                     b.HasOne("FoodDeliveryAPI.Domain.Models.Restaurant", "Restaurant")
-=======
-                    b.HasOne("FoodDeliveryAPI.Models.Restaurant", "Restaurant")
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
                         .WithMany()
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -318,29 +263,17 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.Navigation("Restaurant");
                 });
 
-<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
             modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Customer", b =>
-=======
-            modelBuilder.Entity("FoodDeliveryAPI.Models.Customer", b =>
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
                 {
                     b.Navigation("Orders");
                 });
 
-<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
             modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.DeliveryPerson", b =>
-=======
-            modelBuilder.Entity("FoodDeliveryAPI.Models.DeliveryPerson", b =>
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
                 {
                     b.Navigation("AllOrders");
                 });
 
-<<<<<<< HEAD:FoodDeliveryAPI.DataAcces/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
             modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Order", b =>
-=======
-            modelBuilder.Entity("FoodDeliveryAPI.Models.Order", b =>
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655:FoodDeliveryAPI/Migrations/FoodDeliveryAPIContextModelSnapshot.cs
                 {
                     b.Navigation("Items");
                 });

@@ -6,10 +6,11 @@ namespace FoodDeliveryAPI.Domain.Service
 {
     public interface IOrderService
     {
-        Task<Order> PlaceOrder(OrderDTO order);
-        Item FindOrderItemById(Guid itemId);
+        Task<OrderDTO> PlaceOrder(OrderInput order);
         Task<string> UpdateOrderStatus(string status,Guid orderId);
-        Task<List<Order>> GetAllOrders();
-        Task<Order> GetOrderByID(Guid orderId);
+        Task<List<OrderDTO>> GetAllOrders();
+        Task<OrderDTO> GetOrderByID(Guid orderId);
+        Task<List<OrderDTO>> GetAllOrdersPlaced(Guid userId);
+        Task<List<OrderDTO>> GetActiveOrders(Guid userId);
     }
 }

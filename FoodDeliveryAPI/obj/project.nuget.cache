@@ -1,10 +1,6 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "Ybka+ghN1e08+yFjh5FK6c6SBjAo1SkVPhFAUsEPCkFnUWRs8eGscII3D7BTMATaDeA7tyq88TvSNwAfs0LOPw==",
-=======
-  "dgSpecHash": "2j/JrclwTEF5ft9e3/C1y42IDfDpwAGguaqhxxkDUS3gR1GRAwB/p6ZqrcQwKipcYqIrFEP6mEKGgbU+B83GMg==",
->>>>>>> 77c3c8d3869beb5d7929c4f1d13c2e05bd9b2655
   "success": true,
   "projectFilePath": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.csproj",
   "expectedPackageFiles": [

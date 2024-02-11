@@ -1,0 +1,27 @@
+<main class="h-full bg-gray-100">
+<div class="min-h-full">
+    <app-header (loginForm)="toggleLoginPage($event)"></app-header>
+    @if (showLoginPage) {
+      <div class="fixed left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%] ">
+        <app-login ></app-login> 
+      </div> 
+    }
+    <header class="bg-white shadow">
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Explore food items</h1>
+      </div>
+    </header>
+    <main>
+      <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+        <div class="w-full">
+          <div class="sm:px-3 md:px-5 lg:px-7 xl:9">
+            <h2 class="font-semibold text-2xl">Products</h2>
+            <div class="w-full grid gap-x-3 gap-y-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-flow-row">
+              <app-item [item]="item"  *ngFor="let item of items " class="h-[500px]"></app-item>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</main>

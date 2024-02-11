@@ -1,0 +1,31 @@
+<div class="border-2 rounded-lg h-full">
+    <div class="w-full h-[60%]">
+      <img
+        src="https://source.unsplash.com/random/?restaurant"
+        alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
+        class="rounded-t-lg h-full w-full object-cover"
+      />
+    </div>
+    <div class="p-4 h-[40%] justify-between flex flex-col">
+      <div class="">
+        <h3 class="text-lg font-semibold">
+          <a href="#"
+            ><span aria-hidden="true" class=" "></span>{{ restaurant.restaurantName }}</a
+          >
+        </h3>
+        <p class="text-[#9ea3ac] font-normal py-2">
+          {{ restaurant.address }}
+        </p>
+      </div> 
+      <div class="flex justify-between items-center">
+        <div class="">
+          <p class="italic text-[#a39292]">8 colors</p>
+          <p class="font-medium text-[#3c3939]">${{ restaurant.isClosed }}</p>
+        </div>
+        <div class="">
+          <button class="bg-[#4f46e5] px-5 text-[#ddd7d7] font-medium py-1 rounded-md">Explore items</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

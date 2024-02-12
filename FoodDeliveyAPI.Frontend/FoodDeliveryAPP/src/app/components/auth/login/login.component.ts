@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Token } from '@angular/compiler';
@@ -12,6 +12,7 @@ import { Token } from '@angular/compiler';
 })
 export class LoginComponent {
   authService:AuthService = inject(AuthService);
+  @Output()ToggleLogin:EventEmitter<boolean> =  new EventEmitter<boolean>();
   constructor(){}
   credentials:FormGroup = new FormGroup({
     username: new FormControl<string>(''),
@@ -25,5 +26,8 @@ export class LoginComponent {
       localStorage.setItem('token',res.authToken ?? '');
       console.log(res);
     })
+  }
+  togglePage(){
+    this.ToggleLogin.emit(true);
   }
 }

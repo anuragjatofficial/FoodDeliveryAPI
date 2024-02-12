@@ -14,6 +14,9 @@
                 <div class="w-full grid gap-x-3 gap-y-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-flow-row">
                   <app-restaurant [restaurant]="restaurant"  *ngFor="let restaurant of restaurants " class="h-[500px]"></app-restaurant>
                 </div>
+                <div class="py-3">
+                  <app-pagination [totalEntries]="totalPages" (changePageData)="getRestaurantByPage($event)" ></app-pagination>
+                </div>
               </div>
             </div>
           </div>

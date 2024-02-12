@@ -29,7 +29,7 @@ namespace FoodDeliveryAPI.Domain.Service
             throw new InvalidValueException("Restaurant can't be null");
         }
 
-        public async Task<List<RestaurantDTOWithItem>> GetAllRestaurants(
+        public async Task<IEnumerable<RestaurantDTOWithItem>> GetAllRestaurants(
             int page,
             int pagesize,
             string restaurantName,
@@ -49,13 +49,13 @@ namespace FoodDeliveryAPI.Domain.Service
                     query = sortOrder.ToLower() == "desc" ? query.OrderByDescending(r => r.RestaurantId) : query.OrderBy(r=>r.RestaurantId);
                     break;
             }
-
             return await query
-                            .Include(e=>e.Items)
-                            .Skip((page-1)*pagesize)
-                            .Take(pagesize)
-                            .Select(r=>_mapper.Map<RestaurantDTOWithItem>(r))
-                            .ToListAsync();
+                        .Include(e => e.Items)
+                        .Skip((page - 1) * pagesize)
+                        .Take(pagesize)
+                        .Select(r => _mapper.Map<RestaurantDTOWithItem>(r))
+                        .ToListAsync();
+           
         }
 
         public async Task<RestaurantDTOWithItem> GetRestaurantById(Guid id)
@@ -95,6 +95,11 @@ namespace FoodDeliveryAPI.Domain.Service
             restaurant.Items.Add(item);
             await _context.SaveChangesAsync();
             return _mapper.Map<ItemDTO>(item);
+        }
+
+        public Task<int> GetAllRestaurantCount()
+        {
+            return _context.Restaurants.CountAsync();
         }
     }
 }

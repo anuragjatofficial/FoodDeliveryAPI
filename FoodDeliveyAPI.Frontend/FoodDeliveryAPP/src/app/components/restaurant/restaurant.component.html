@@ -23,7 +23,7 @@
           <p class="font-medium text-[#3c3939]">${{ restaurant.isClosed }}</p>
         </div>
         <div class="">
-          <button class="bg-[#4f46e5] px-5 text-[#ddd7d7] font-medium py-1 rounded-md">Explore items</button>
+          <button [routerLink]="['/restaurants',restaurant.restaurantId]" routerLinkActive="router-link-active"  class="bg-[#4f46e5] px-5 text-[#ddd7d7] font-medium py-1 rounded-md" >Explore items</button>
         </div>
       </div>
     </div>

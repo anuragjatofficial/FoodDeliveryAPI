@@ -1,9 +1,9 @@
 <main class="h-full bg-gray-100">
-<div class="min-h-full">
-    <app-header (loginForm)="toggleLoginPage($event)"></app-header>
+<div class="min-h-full h-full">
+    <app-header (loginForm)="toggleLoginPage($event)" ></app-header>
     @if (showLoginPage) {
-      <div class="fixed left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%] ">
-        <app-login ></app-login> 
+      <div class=" w-full  h-full  backdrop-blur-sm  fixed top-0 left-0 duration-1000 delay-1000 transition-all ease-in-out">
+        <app-login class="fixed left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%]"(ToggleLogin)="toggleLoginPage($event)" ></app-login> 
       </div> 
     }
     <header class="bg-white shadow">

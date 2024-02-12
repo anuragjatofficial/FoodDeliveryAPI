@@ -52,7 +52,7 @@ var audience = builder.Configuration["Jwt:Audience"];
 
 builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
 {
-    build.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
+    build.WithOrigins("*").AllowAnyHeader().AllowAnyMethod().WithExposedHeaders("Records");
 }));
 
 // to add jwtbearer as authentication scheme 

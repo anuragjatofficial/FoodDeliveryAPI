@@ -46,7 +46,19 @@ namespace FoodDeliveryAPI.Controllers
         {
             try
             {
-                return Ok(await _restaurantService.GetAllRestaurants(page,pagesize,restaurantName,orderBy,sortOrder));
+                var res = await _restaurantService.GetAllRestaurants(
+                    page,
+                    pagesize,
+                    restaurantName,
+                    orderBy,
+                    sortOrder
+                );
+                var records = await _restaurantService.GetAllRestaurantCount();
+                HttpContext
+                    .Response?
+                    .Headers?
+                    .Add( "records", records.ToString() );
+                return Ok(res);
             }
             catch(RestaurantNotFoundException ex)
             {

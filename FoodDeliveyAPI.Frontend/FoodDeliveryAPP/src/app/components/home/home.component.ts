@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit{
   }
   
   toggleLoginPage($event:boolean){
-    this.showLoginPage = true;
+    this.showLoginPage = !this.showLoginPage;
   }
 
 }

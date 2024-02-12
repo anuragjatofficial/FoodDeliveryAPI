@@ -5,15 +5,27 @@ import { Injectable, inject } from '@angular/core';
   providedIn: 'root'
 })
 export class RestaurantService {
-  constructor() { }
-
+  
+  
+  http:HttpClient = inject(HttpClient);
+  token:string = '';
   url = `https://localhost:7146`;
 
-  http:HttpClient = inject(HttpClient);
+
+  constructor() { 
+    this.token  = localStorage.getItem('token')|| '';
+  }
 
   getAllRestaurants(page:number = 1,pagesize:number = 10){
-    const token = localStorage.getItem('token');
-    return this.http.get(`${this.url}/Restaurant?page=${page}&pagesize=${pagesize}&orderBy=restaurantname&sortOrder=asc`,{headers:{ 'Authorization': `Bearer ${token}` }});
+    return this
+            .http
+            .get(`${this.url}/Restaurant?page=${page}&pagesize=${pagesize}&orderBy=restaurantname&sortOrder=asc`,{ observe:'response',headers:{ 'Authorization': `Bearer ${this.token}` }});
+  }
+
+  getRestaurantById(id: string) {
+    return this
+            .http
+            .get(`${this.url}/restaurant/${id}`,{observe:'response',headers:{'Authorization': `Bearer ${this.token}`}});
   }
 
 }

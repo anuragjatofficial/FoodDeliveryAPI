@@ -52,10 +52,19 @@
 
     <section>
         <h2 class="font-semibold text-2xl py-5">Items</h2>
+        @if (restaurant?.items!.length==0) {
+            <h2 class="font-semibold text-2xl py-5 text-[#b3acac] text-center w-full" >No items found </h2>
+        }@else{
             <div class="w-full grid gap-x-3 gap-y-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-flow-row">
-              <app-item [item]="item"  *ngFor="let item of restaurant?.items " class="h-[500px]"></app-item>
+                <app-item [item]="item"  *ngFor="let item of restaurant?.items " class="h-[500px]"></app-item>
             </div>
-            
+        }
+        
+        
+
+        <!-- <div class="py-3">
+            <app-pagination [totalEntries]="totalPages" (changePageData)="getRestaurantByPage($event)" ></app-pagination>
+        </div> -->
     </section>
 
 </main>

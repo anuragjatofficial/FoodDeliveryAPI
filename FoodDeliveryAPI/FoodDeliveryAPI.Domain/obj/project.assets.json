@@ -3425,19 +3425,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Anurag Choudhary\\.nuget\\packages\\": {}
+    "C:\\Users\\AnuragChoudhary\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Anurag Choudhary\\OneDrive\\Desktop\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.Domain\\FoodDeliveryAPI.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.Domain\\FoodDeliveryAPI.Domain.csproj",
       "projectName": "FoodDeliveryAPI.Domain",
-      "projectPath": "c:\\Users\\Anurag Choudhary\\OneDrive\\Desktop\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.Domain\\FoodDeliveryAPI.Domain.csproj",
-      "packagesPath": "C:\\Users\\Anurag Choudhary\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Anurag Choudhary\\OneDrive\\Desktop\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.Domain\\obj\\",
+      "projectPath": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.Domain\\FoodDeliveryAPI.Domain.csproj",
+      "packagesPath": "C:\\Users\\AnuragChoudhary\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Anurag Choudhary\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\AnuragChoudhary\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3451,8 +3451,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Users\\Anurag Choudhary\\OneDrive\\Desktop\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.DataAcces\\FoodDeliveryAPI.DataAcces.csproj": {
-              "projectPath": "c:\\Users\\Anurag Choudhary\\OneDrive\\Desktop\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.DataAcces\\FoodDeliveryAPI.DataAcces.csproj"
+            "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.DataAcces\\FoodDeliveryAPI.DataAcces.csproj": {
+              "projectPath": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI.DataAcces\\FoodDeliveryAPI.DataAcces.csproj"
             }
           }
         }
@@ -3500,7 +3500,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -46,6 +46,7 @@ namespace FoodDeliveryAPI.Domain.Service
             return new Token()
             {
                 authToken = new JwtSecurityTokenHandler().WriteToken(token),
+                userId = user.UserId,
                 IssuedAt = DateTime.Now,
                 ExpireAt = DateTime.Now.AddHours(2),
             };

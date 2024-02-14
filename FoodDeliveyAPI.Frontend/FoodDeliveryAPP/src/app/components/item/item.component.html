@@ -1,7 +1,7 @@
 <div class="border-2 rounded-lg h-full">
   <div class="w-full h-[60%]">
     <img
-      src="https://source.unsplash.com/random/?food"
+      src="https://source.unsplash.com/random/?food,{{ item.name }}"
       alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
       class="rounded-t-lg h-full w-full object-cover"
     />
@@ -23,7 +23,7 @@
         <p class="font-medium text-[#3c3939]">${{ item.price }}</p>
       </div>
       <div class="">
-        <button class="bg-[#4f46e5] px-5 text-[#ddd7d7] font-medium py-1 rounded-md">Add to cart</button>
+        <button class="bg-[#4f46e5] px-5 text-[#ddd7d7] font-medium py-1 rounded-md" (click)="addToCart()">Add to cart</button>
       </div>
     </div>
   </div>

@@ -97,6 +97,27 @@ namespace FoodDeliveryAPI.Controllers
         public async Task<ActionResult<List<OrderDTO>>> GetActiveOrders(Guid customerId) => 
             Ok(await _orderService.GetActiveOrders(customerId));
 
+        
+        [HttpPost("{id}/cart/add")]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN},{Role.USER}")]
+        public async Task<ActionResult<List<ItemDTO>>> addItemsToCart([FromBody] ItemDTO item,Guid id)
+        {
+            try
+            {
+                return CreatedAtRoute($"{id}/cart/add",await _customerService.addItemsToCart(item, id));
+
+            }
+            catch(ItemNotFoundException ex)
+            {
+
+                return BadRequest(ex.Message);
+
+            }
+            catch(CustomerNotFoundException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
        
     }
 }

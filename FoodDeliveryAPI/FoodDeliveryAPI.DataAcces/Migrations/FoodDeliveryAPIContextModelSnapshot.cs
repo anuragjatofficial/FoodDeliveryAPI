@@ -22,7 +22,7 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Admin", b =>
+            modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Admin", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
@@ -58,7 +58,7 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.ToTable("Admins");
                 });
 
-            modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Customer", b =>
+            modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Customer", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
@@ -94,7 +94,7 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.DeliveryPerson", b =>
+            modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.DeliveryPerson", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
@@ -130,10 +130,13 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.ToTable("DeliveryPersons");
                 });
 
-            modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Item", b =>
+            modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Item", b =>
                 {
                     b.Property<Guid>("ItemId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CustomerUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -158,6 +161,8 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
 
                     b.HasKey("ItemId");
 
+                    b.HasIndex("CustomerUserId");
+
                     b.HasIndex("OrderId");
 
                     b.HasIndex("RestaurantId");
@@ -165,7 +170,7 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Order", b =>
+            modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Order", b =>
                 {
                     b.Property<Guid>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -199,7 +204,7 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.ToTable("orders");
                 });
 
-            modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Restaurant", b =>
+            modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Restaurant", b =>
                 {
                     b.Property<Guid>("RestaurantId")
                         .ValueGeneratedOnAdd()
@@ -221,13 +226,17 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.ToTable("Restaurants");
                 });
 
-            modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Item", b =>
+            modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Item", b =>
                 {
-                    b.HasOne("FoodDeliveryAPI.Domain.Models.Order", null)
+                    b.HasOne("FoodDeliveryAPI.DataAcces.Models.Customer", null)
+                        .WithMany("Cart")
+                        .HasForeignKey("CustomerUserId");
+
+                    b.HasOne("FoodDeliveryAPI.DataAcces.Models.Order", null)
                         .WithMany("Items")
                         .HasForeignKey("OrderId");
 
-                    b.HasOne("FoodDeliveryAPI.Domain.Models.Restaurant", "Restaurant")
+                    b.HasOne("FoodDeliveryAPI.DataAcces.Models.Restaurant", "Restaurant")
                         .WithMany("Items")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -236,21 +245,21 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.Navigation("Restaurant");
                 });
 
-            modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Order", b =>
+            modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Order", b =>
                 {
-                    b.HasOne("FoodDeliveryAPI.Domain.Models.Customer", "Customer")
+                    b.HasOne("FoodDeliveryAPI.DataAcces.Models.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FoodDeliveryAPI.Domain.Models.DeliveryPerson", "DeliveryPerson")
+                    b.HasOne("FoodDeliveryAPI.DataAcces.Models.DeliveryPerson", "DeliveryPerson")
                         .WithMany("AllOrders")
                         .HasForeignKey("DeliveryPersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FoodDeliveryAPI.Domain.Models.Restaurant", "Restaurant")
+                    b.HasOne("FoodDeliveryAPI.DataAcces.Models.Restaurant", "Restaurant")
                         .WithMany()
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -263,22 +272,24 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.Navigation("Restaurant");
                 });
 
-            modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Customer", b =>
+            modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Customer", b =>
                 {
+                    b.Navigation("Cart");
+
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.DeliveryPerson", b =>
+            modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.DeliveryPerson", b =>
                 {
                     b.Navigation("AllOrders");
                 });
 
-            modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Order", b =>
+            modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Order", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("FoodDeliveryAPI.Domain.Models.Restaurant", b =>
+            modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Restaurant", b =>
                 {
                     b.Navigation("Items");
                 });

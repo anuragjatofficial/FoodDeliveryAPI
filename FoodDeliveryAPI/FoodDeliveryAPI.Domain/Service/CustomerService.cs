@@ -66,5 +66,23 @@ namespace FoodDeliveryAPI.Domain.Service
                     .Select(customer => _mapper.Map<CustomerDTO>(customer));
 
         }
+
+        public async Task<List<ItemDTO>> addItemsToCart(ItemDTO item, Guid userid)
+        {
+            var res = _context.Items.FirstOrDefault(it => it.ItemId == item.ItemId);
+
+            if(res!=null)
+            {
+                
+                var customer = await _context.Customers.FirstOrDefaultAsync(c => c.UserId == userid) ?? throw new CustomerNotFoundException($"can't find any customer with id {userid}");
+                customer.Cart.Add(res);
+                await _context.SaveChangesAsync();
+                return  customer.Cart.Select(it => _mapper.Map<ItemDTO>(it)).ToList(); 
+            }
+            else
+            {
+                throw new ItemNotFoundException("can't find any item with id "+ item.ItemId);
+            }
+        }
     }
 }

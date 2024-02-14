@@ -9,5 +9,7 @@ namespace FoodDeliveryAPI.Domain.Service
        Task<CustomerDTO> AddCustomer(Customer customer);
        IEnumerable<CustomerDTO> GetAllCustomers(string sortBy, string sortOrder, int page, int pageSize,string username);
        Task<CustomerDTO> GetCustomerById(string id);
+
+       Task<List<ItemDTO>> addItemsToCart(ItemDTO item,Guid userid);
     }
 }

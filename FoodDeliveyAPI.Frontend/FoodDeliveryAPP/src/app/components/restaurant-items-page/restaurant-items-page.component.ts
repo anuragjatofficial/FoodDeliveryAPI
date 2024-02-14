@@ -5,11 +5,12 @@ import { RestaurantService } from '../../service/restaurant.service';
 import { Restaurant } from '../../models/Restaurant';
 import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
+import { PaginationComponent } from '../pagination/pagination.component';
 
 @Component({
   selector: 'app-restaurant-items-page',
   standalone: true,
-  imports: [ItemComponent,HeaderComponent,CommonModule],
+  imports: [ItemComponent,HeaderComponent,CommonModule,PaginationComponent],
   templateUrl: './restaurant-items-page.component.html',
   template:``,
   styleUrl: './restaurant-items-page.component.css'
@@ -25,8 +26,12 @@ export class RestaurantItemsPageComponent implements OnInit{
     console.log(this.id);
     
     this.restaurantService.getRestaurantById(this.id).subscribe((data:any)=>{
-      this.restaurant = data;
+      this.restaurant = data?.body;
+      console.log(this.restaurant);
+      
     });
     
+    
+
   }
 }

@@ -15,8 +15,22 @@ export class PaginationComponent {
   currentPage:number = 1;
 
   changePage(page:number) {
-    this.changePageData.emit(page);
-    this.currentPage = page;
+      this.changePageData.emit(page);
+      this.currentPage = page;
+  }
+
+  goBack(page:number){
+    if(this.currentPage>1){
+      this.changePageData.emit(page);
+      this.currentPage = page;
+    }
+  }
+
+  goForward(page:number){
+    if(!(this.currentPage>=this.totalEntries)){
+      this.changePageData.emit(page);
+      this.currentPage = page;
+    }
   }
 
 }

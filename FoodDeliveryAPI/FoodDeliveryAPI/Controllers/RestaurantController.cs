@@ -72,7 +72,7 @@ namespace FoodDeliveryAPI.Controllers
 
         // GET: api/Restaurant/5
         [HttpGet("{id}")]
-        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN},{Role.USER}")]
         public async Task<ActionResult<Restaurant>> GetRestaurant(Guid id)
         {
             try
@@ -124,7 +124,7 @@ namespace FoodDeliveryAPI.Controllers
         {
             try
             {
-                return Created("api/Restaurant",await _restaurantService
+                return Created("/",await _restaurantService
                     .AddRestaurant(new Restaurant()
                     {
                         RestaurantName = restaurant.RestaurantName,
@@ -185,7 +185,7 @@ namespace FoodDeliveryAPI.Controllers
         {
             try
             {
-                return Created("/addItems", await _restaurantService.AddItem(item));
+                return Created("addItems", await _restaurantService.AddItem(item));
             }catch(RestaurantNotFoundException ex)
             {
                 return NotFound(ex.Message);

@@ -7,8 +7,8 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './restaurant.component.html',
-  styleUrl: './restaurant.component.css'
+  styleUrl: './restaurant.component.css',
 })
 export class RestaurantComponent {
-  @Input() restaurant!:Restaurant;
+  @Input() restaurant!: Restaurant;
 }

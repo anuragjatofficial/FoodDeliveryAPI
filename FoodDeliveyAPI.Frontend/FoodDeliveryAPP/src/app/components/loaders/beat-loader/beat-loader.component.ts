@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './beat-loader.component.html',
-  styleUrl: './beat-loader.component.css'
+  styleUrl: './beat-loader.component.css',
 })
-export class BeatLoaderComponent {
-
-}
+export class BeatLoaderComponent {}

@@ -1,15 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RestaurantItemsPageComponent } from './components/restaurant-items-page/restaurant-items-page.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HomeComponent,LoginComponent,RestaurantItemsPageComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [RouterOutlet],
+    template:`<router-outlet></router-outlet>`
 })
 export class AppComponent {
   title = 'FoodDeliveryAPP';

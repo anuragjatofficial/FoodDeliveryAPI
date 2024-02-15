@@ -92,20 +92,35 @@ namespace FoodDeliveryAPI.Controllers
             }
         }
         
-        [HttpGet("orders/active")]
+        [HttpGet("{customerId}/orders/active")]
         [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN},{Role.USER}")]
         public async Task<ActionResult<List<OrderDTO>>> GetActiveOrders(Guid customerId) => 
             Ok(await _orderService.GetActiveOrders(customerId));
 
-        
-        [HttpPost("{id}/cart/add")]
-        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN},{Role.USER}")]
-        public async Task<ActionResult<List<ItemDTO>>> addItemsToCart([FromBody] ItemDTO item,Guid id)
+
+        [HttpGet("{customerId}/orders/all")]
+        [Authorize(Roles =$"{Role.ADMIN},{Role.USER},{Role.SUPER_ADMIN}")]
+        public async Task<ActionResult<List<OrderDTO>>> GetAllOrders(Guid customerId)
         {
             try
             {
-                return CreatedAtRoute($"{id}/cart/add",await _customerService.addItemsToCart(item, id));
-
+               return Ok(await _orderService.GetAllOrdersPlaced(customerId));
+            }catch(CustomerNotFoundException ex)
+            {
+                return BadRequest(ex.Message);
+            }catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpPost("{id}/cart/add")]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN},{Role.USER}")]
+        public async Task<ActionResult<List<ItemDTO>>> AddItemsToCart([FromBody] ItemDTO item,[FromRoute] Guid id)
+        {
+            try
+            {
+                return Created( $"{id}/cart/add",await _customerService.addItemsToCart(item, id));
             }
             catch(ItemNotFoundException ex)
             {
@@ -116,6 +131,29 @@ namespace FoodDeliveryAPI.Controllers
             catch(CustomerNotFoundException ex)
             {
                 return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("{id}/cart")]
+        public async Task<ActionResult<List<ItemDTO>>> GetCartItems(Guid id)
+        {
+            return Ok(await _customerService.getCartItems(id));
+        }
+
+        [HttpDelete("{userId}/cart/{itemId}")]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN},{Role.USER}")]
+        public async Task<ActionResult<List<ItemDTO>>> RemoveCartItems(Guid userId,Guid itemId)
+        {
+            try
+            {
+                return Ok(await _customerService.removeItemsFromCart(itemId, userId));
+            }
+            catch (ItemNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (CustomerNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
         }
        

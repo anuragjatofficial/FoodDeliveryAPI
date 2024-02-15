@@ -1,0 +1,124 @@
+<div class="relative z-10" role="dialog" aria-modal="true">
+  <!--
+      Background backdrop, show/hide based on modal state.
+  
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+  <div
+    class="fixed inset-0 hidden bg-gray-500 bg-opacity-75 transition-opacity md:block"
+  ></div>
+
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div
+      class="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4"
+    >
+      <!--
+          Modal panel, show/hide based on modal state.
+  
+          Entering: "ease-out duration-300"
+            From: "opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
+            To: "opacity-100 translate-y-0 md:scale-100"
+          Leaving: "ease-in duration-200"
+            From: "opacity-100 translate-y-0 md:scale-100"
+            To: "opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
+        -->
+      <div
+        class="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl"
+      >
+        <div
+          class="relative rounded-md flex w-full items-center overflow-hidden bg-white px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8"
+        >
+          <button
+            type="button"
+            class="p-2 hover:bg-slate-100 rounded-md absolute right-3 top-3 text-gray-400 hover:text-gray-500 sm:right-6 sm:top-8 md:right-5 md:top-5 lg:right-7 lg:top-7"
+            (click)="ToggleCheckOut()"
+          >
+            <span class="sr-only">Close</span>
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          <div
+            class="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8"
+          >
+            <div
+              class="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5"
+            >
+              <img
+                src="https://source.unsplash.com/random/?food"
+                alt="Two each of gray, white, and black shirts arranged on table."
+                class="object-cover object-center"
+              />
+            </div>
+            <div class="sm:col-span-8 lg:col-span-7 h-full flex flex-col">
+              <h2 class="text-2xl font-bold text-gray-900 sm:pr-12">
+                Items Total
+              </h2>
+
+              <div class="w-full flex justify-center h-[80%] items-center">
+                <div class="w-full px-3 rounded-md mt-5">
+                  <div class="font-sans">
+                    @for (item of items; track $index) {
+
+                    <li
+                      class="text-[#6b7280] py-1 flex w-full justify-between font-medium text-base"
+                    >
+                      <div>{{ item.name }}</div>
+                      <div>$ {{ item.price }}</div>
+                    </li>
+                    }
+                    <div
+                      class="flex w-full justify-between font-semibold text-lg"
+                    >
+                      <div class="">Subtotoal</div>
+                      <div>$ {{ calculateCartTotal() }}</div>
+                    </div>
+                  </div>
+                  <div class="text-[#6b7280] font-medium text-sm my-3">
+                    Shipping and taxes calculated at checkout.
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex mb-auto">
+                <div class="w-full my-3">
+                  <button
+                    class="w-full bg-[#4f46e5] px-5 text-[#ddd7d7] font-medium py-1 rounded-md"
+                    [disabled]="items.length === 0"
+                    [disabled]="isLoading"
+                    [ngClass]="{
+                      'cursor-not-allowed': items.length === 0 || isLoading,
+                      'bg-indigo-400': items.length === 0 || isLoading
+                    }"
+                    (click)="placeOrder()"
+                  >
+                    @if (isLoading) {
+                    <app-beat-loader></app-beat-loader>
+                    } @else { Proceed To Checkout }
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

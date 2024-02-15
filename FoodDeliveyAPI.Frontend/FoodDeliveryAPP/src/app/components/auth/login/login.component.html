@@ -1,43 +1,81 @@
-<div class="w-[400px] mx-auto shadow-lg px-7 rounded-lg flex items-center bg-white  ">
-    <div class="w-full">
-        <div class="flex items-end flex-col mt-5 cursor-pointer" (click)="togglePage()">
-            <span class="p-2 hover:bg-slate-100 rounded-md ">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                  </svg>                  
-            </span>
-        </div>
-        <div class="flex-shrink-0 flex ">
-            <img class="h-8 w-8 mx-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-          </div>
-        <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
-        </h2>
-        <form  class="mt-10" [formGroup]="credentials" (submit)="signIn()">
-            <div class="flex flex-col">
-                <label for="username" class="font-medium pb-3">Username</label>
-                <div class="mb-3">
-                    <input type="text" formControlName="username" name="username" class="block w-full rounded-md border-0 focus:outline-none px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-            </div>
-            <div class="flex flex-col mb-3">
-                <label for="password" class="font-medium pb-3">Password</label>
-                <div class="mb-3">
-                    <input type="password" formControlName="password" id="password" class="block w-full rounded-md border-0 focus:outline-none px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-            </div>
-            <div class="flex flex-col mb-3">
-                <div>
-                    <button [disabled]="isLoading" [ngClass]="{'cursor-pointer': !isLoading,'cursor-not-allowed':isLoading}"  type="submit" id="password" class="text-[#ddd7d7] block w-full rounded-md border-0 focus:outline-none px-4 py-1.5 shadow-sm focus:ring-offset-1 bg-indigo-600 hover:bg-indigo-500 font-medium text- placeholder:text-gray-400 focus-visible:outline-indigo-500 focus-visible:outline-offset-1  sm:text-sm sm:leading-6"  >
-                        @if (isLoading) {
-                            <app-beat-loader></app-beat-loader>
-                        } @else {
-                            Submit
-                        }
-                    </button>
-                </div>
-            </div>
-        </form>
+<div
+  class="w-[400px] mx-auto shadow-lg px-7 rounded-lg flex items-center bg-white"
+>
+  <div class="w-full">
+    <div
+      class="flex items-end flex-col mt-5 cursor-pointer"
+      (click)="togglePage()"
+    >
+      <span class="p-2 hover:bg-slate-100 rounded-md">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </span>
     </div>
+    <div class="flex-shrink-0 flex">
+      <img
+        class="h-8 w-8 mx-auto"
+        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+        alt="Your Company"
+      />
+    </div>
+    <h2
+      class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
+    >
+      Sign in to your account
+    </h2>
+    <form class="mt-10" [formGroup]="credentials" (submit)="signIn()">
+      <div class="flex flex-col">
+        <label for="username" class="font-medium pb-3">Username</label>
+        <div class="mb-3">
+          <input
+            type="text"
+            formControlName="username"
+            name="username"
+            class="block w-full rounded-md border-0 focus:outline-none px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+      <div class="flex flex-col mb-3">
+        <label for="password" class="font-medium pb-3">Password</label>
+        <div class="mb-3">
+          <input
+            type="password"
+            formControlName="password"
+            id="password"
+            class="block w-full rounded-md border-0 focus:outline-none px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+      <div class="flex flex-col mb-3">
+        <div>
+          <button
+            [disabled]="isLoading"
+            [ngClass]="{
+              'cursor-pointer': !isLoading,
+              'cursor-not-allowed': isLoading
+            }"
+            type="submit"
+            id="password"
+            class="text-[#ddd7d7] block w-full rounded-md border-0 focus:outline-none px-4 py-1.5 shadow-sm focus:ring-offset-1 bg-indigo-600 hover:bg-indigo-500 font-medium text- placeholder:text-gray-400 focus-visible:outline-indigo-500 focus-visible:outline-offset-1 sm:text-sm sm:leading-6"
+          >
+            @if (isLoading) {
+            <app-beat-loader></app-beat-loader>
+            } @else { Submit }
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

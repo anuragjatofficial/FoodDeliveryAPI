@@ -70,19 +70,85 @@ namespace FoodDeliveryAPI.Domain.Service
         public async Task<List<ItemDTO>> addItemsToCart(ItemDTO item, Guid userid)
         {
             var res = _context.Items.FirstOrDefault(it => it.ItemId == item.ItemId);
+            
 
             if(res!=null)
             {
-                
-                var customer = await _context.Customers.FirstOrDefaultAsync(c => c.UserId == userid) ?? throw new CustomerNotFoundException($"can't find any customer with id {userid}");
-                customer.Cart.Add(res);
-                await _context.SaveChangesAsync();
-                return  customer.Cart.Select(it => _mapper.Map<ItemDTO>(it)).ToList(); 
+                var customer = await _context.Customers.Include(customer=>customer.Cart).FirstOrDefaultAsync(c => c.UserId == userid) ?? throw new CustomerNotFoundException($"can't find any customer with id {userid}");
+                // check if customer's cart is empty or not 
+
+                int totalCartItems = customer.Cart.Count();
+                bool isItemSafeToAdd = false;
+
+                if (totalCartItems != 0)
+                {
+                    // count to check how many items are not from the restaurant which we found from `res` variable's `restaurantId`
+                    var count = customer.Cart.Where(e => e.RestaurantId != res.RestaurantId).Count();
+                    if(count == 0)
+                    {
+                        // here we are safe to place order 
+                        isItemSafeToAdd = true;
+                    }
+                    else if (count == totalCartItems)
+                    {
+                        // it means invalid items has been passed 
+                        throw new InvalidValueException($"please remove other items to add this or add item from same restaurant");
+                    }
+                    else
+                    {
+                        // if we are here then it means any items is there in list whose restaurant id is different then others 
+                        throw new Exception($"can't place order please try later");
+                    }
+                }
+                else
+                {
+                    // here also we can add any item to cart as cart is empty 
+                    isItemSafeToAdd = true;
+                }
+                if (isItemSafeToAdd)
+                {
+                    customer.Cart.Add(res);
+                    await _context.SaveChangesAsync();
+                    return customer.Cart.Select(it => _mapper.Map<ItemDTO>(it)).ToList();
+                }
+                else
+                {
+                    throw new Exception($"can't place order please try later"); 
+                }
             }
             else
             {
                 throw new ItemNotFoundException("can't find any item with id "+ item.ItemId);
             }
+        }
+
+        public async Task<List<ItemDTO>> removeItemsFromCart(Guid itemId,Guid userId)
+        {
+            var res = _context.Items.FirstOrDefault(i => i.ItemId == itemId);
+
+            if(res!=null)
+            {
+                var customer = _context.Customers.Include(_customer => _customer.Cart).FirstOrDefault(c => c.UserId == userId) ?? throw new CustomerNotFoundException($"can't find any customer with id {userId}");
+                customer.Cart.Remove(res);
+                await _context.SaveChangesAsync();
+                return customer.Cart.Select(item=>_mapper.Map<ItemDTO>(item)).ToList();
+            }
+            else
+            {
+                throw new ItemNotFoundException($"can't find any item with id {itemId}");
+            }
+        }
+
+        public async Task<List<ItemDTO>> getCartItems(Guid id)
+        {
+            var customer = await _context.Customers.Include(c=>c.Cart).FirstOrDefaultAsync(cs => cs.UserId == id) ?? throw new CustomerNotFoundException($"can't find any customer with id {id}");
+            return customer.Cart.Select(item=>_mapper.Map<ItemDTO>(item)).ToList();
+        }
+
+        public async Task<List<OrderDTO>> getAllOrders(Guid customerId)
+        {
+            var customer = await _context.Customers.Include(customer=>customer.Orders).FirstOrDefaultAsync(customer => customer.UserId == customerId) ?? throw new CustomerNotFoundException($"can't find any customer with id {customerId}");
+            return customer.Orders.Select(order=>_mapper.Map<OrderDTO>(order)).ToList();
         }
     }
 }

@@ -55,7 +55,7 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-                    b.ToTable("Admins");
+                    b.ToTable("Admins", (string)null);
                 });
 
             modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Customer", b =>
@@ -91,7 +91,7 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.DeliveryPerson", b =>
@@ -127,7 +127,7 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-                    b.ToTable("DeliveryPersons");
+                    b.ToTable("DeliveryPersons", (string)null);
                 });
 
             modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Item", b =>
@@ -167,7 +167,7 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
 
                     b.HasIndex("RestaurantId");
 
-                    b.ToTable("Items");
+                    b.ToTable("Items", (string)null);
                 });
 
             modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Order", b =>
@@ -201,7 +201,7 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
 
                     b.HasIndex("RestaurantId");
 
-                    b.ToTable("orders");
+                    b.ToTable("orders", (string)null);
                 });
 
             modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Restaurant", b =>
@@ -223,7 +223,7 @@ namespace FoodDeliveryAPI.DataAcces.Migrations
 
                     b.HasKey("RestaurantId");
 
-                    b.ToTable("Restaurants");
+                    b.ToTable("Restaurants", (string)null);
                 });
 
             modelBuilder.Entity("FoodDeliveryAPI.DataAcces.Models.Item", b =>

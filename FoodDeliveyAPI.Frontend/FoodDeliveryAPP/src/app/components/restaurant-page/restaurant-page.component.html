@@ -1,26 +1,36 @@
 <main class="h-full bg-gray-100">
-    <div class="min-h-full">
-        <app-header></app-header>
-        <header class="bg-white shadow">
-          <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Explore Restaurants</h1>
-          </div>
-        </header>
-        <main>
-          <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-            <div class="w-full">
-              <div class="sm:px-3 md:px-5 lg:px-7 xl:9">
-                <h2 class="font-semibold text-2xl">Restaurants near you</h2>
-                <div class="w-full grid gap-x-3 gap-y-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-flow-row">
-                  <app-restaurant [restaurant]="restaurant"  *ngFor="let restaurant of restaurants " class="h-[500px]"></app-restaurant>
-                </div>
-                <div class="py-3">
-                  <app-pagination [totalEntries]="totalPages" (changePageData)="getRestaurantByPage($event)" ></app-pagination>
-                </div>
-              </div>
+  <div class="min-h-full">
+    <app-header></app-header>
+    <header class="bg-white shadow">
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+          Explore Restaurants
+        </h1>
+      </div>
+    </header>
+    <main>
+      <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+        <div class="w-full">
+          <div class="sm:px-3 md:px-5 lg:px-7 xl:9">
+            <h2 class="font-semibold text-2xl">Restaurants near you</h2>
+            <div
+              class="w-full grid gap-x-3 gap-y-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-flow-row"
+            >
+              <app-restaurant
+                [restaurant]="restaurant"
+                *ngFor="let restaurant of restaurants"
+                class="h-[500px]"
+              ></app-restaurant>
+            </div>
+            <div class="py-3">
+              <app-pagination
+                [totalEntries]="totalPages"
+                (changePageData)="getRestaurantByPage($event)"
+              ></app-pagination>
             </div>
           </div>
-        </main>
+        </div>
       </div>
-      
     </main>
+  </div>
+</main>

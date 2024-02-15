@@ -1,0 +1,41 @@
+<main>
+  <!-- main app header -->
+  <app-header></app-header>
+
+  <header class="bg-white shadow">
+    <div
+      class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex justify-between"
+    >
+      <button
+        class="bg-[#4f46e5] px-5 text-[#ddd7d7] font-medium py-1 rounded-md"
+        [routerLink]="['/orders', 'all']"
+        routerLinkActive="router-link-active"
+      >
+        All Orders
+      </button>
+      <button
+        class="bg-[#288f5a] px-5 text-[#ddd7d7] font-medium py-1 rounded-md"
+        [routerLink]="['/orders', 'active']"
+        routerLinkActive="router-link-active"
+      >
+        Active Orders
+      </button>
+    </div>
+  </header>
+
+  <!-- order history section -->
+
+  <section>
+    @if (showOrders=='all') {
+    <!-- display all orders -->
+      
+      @for (item of allOrders; track $index) {
+        <app-order-item [order]="item"></app-order-item>
+      }
+
+    } @else if(showOrders == 'active') {
+    <!-- display active orders -->
+    
+    }
+  </section>
+</main>

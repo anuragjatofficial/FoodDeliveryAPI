@@ -27,7 +27,7 @@ namespace FoodDeliveryAPI.DataAcces.Models
 
         //[ValidateOrderStatus]
         public string OrderStatus { get; set; }
-        public List<Item> Items { get; set; }
+        public List<Item> Items { get; set; } = new List<Item>();
         public List<string> ValidStatuses { get; set; } = new List<string> {
             Models.OrderStatus.PLACED,
             Models.OrderStatus.CANCELLED

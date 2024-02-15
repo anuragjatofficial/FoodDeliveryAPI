@@ -13,7 +13,13 @@ export class RestaurantService {
 
 
   constructor() { 
-    this.token  = localStorage.getItem('token')|| '';
+    var detailsString = localStorage.getItem('token');
+
+    if(detailsString){
+      var user = JSON.parse(detailsString);
+      this.token = user?.authToken ?? '';
+    }
+    
   }
 
   getAllRestaurants(page:number = 1,pagesize:number = 10){

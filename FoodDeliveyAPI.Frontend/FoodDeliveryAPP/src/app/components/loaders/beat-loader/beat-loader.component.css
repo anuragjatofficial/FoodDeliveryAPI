@@ -2,7 +2,7 @@
     display: inline-block;
     width: 100%;
     position: relative;
-    margin: auto;
+    margin: auto; 
   }
   .lds-ellipsis div {
     position: absolute;

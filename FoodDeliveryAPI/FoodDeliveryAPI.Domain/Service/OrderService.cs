@@ -19,11 +19,28 @@ namespace FoodDeliveryAPI.Domain.Service
             _mapper = mapper;
         }
 
-        public async Task<OrderDTO> PlaceOrder(OrderInput order)
+        public async Task<OrderDTO> PlaceOrder(Guid customerId)
         {
-            var restaurant = _context.Restaurants.FirstOrDefault(u=>u.RestaurantId==order.RestaurantId) ?? throw new RestaurantNotFoundException($"can't find any restaurant with id {order.RestaurantId}");
-            var customer = _context.Customers.FirstOrDefault(u => u.UserId == order.CustomerId) ?? throw new CustomerNotFoundException($"can't find customer with id {order.CustomerId}");
+            Customer customer = _context.Customers.Include(c=>c.Cart).FirstOrDefault(u => u.UserId == customerId) ?? throw new CustomerNotFoundException($"can't find customer with id {customerId}");
             
+            // check if cart is not empty 
+
+            if(customer.Cart.Count == 0)
+            {
+                throw new InvalidValueException($"your cart is empty , can't proceed order");
+            }
+
+            // check if cart has all valid items i.e not out of stock 
+
+            var count = customer.Cart.Where(item => item.isOutOfStock == true).ToList().Count;
+
+            if(count > 0)
+            {
+                throw new ItemOutOfStockException($"please remove out of stock items to proceed");
+            }
+
+            var restaurantId = customer.Cart.First().RestaurantId;
+            var restaurant = _context.Restaurants.FirstOrDefault(u=>u.RestaurantId==restaurantId) ?? throw new RestaurantNotFoundException($"can't find any restaurant with id {restaurantId}");
             // check if restaurant is closed or not 
 
             if (restaurant.IsClosed)
@@ -32,37 +49,18 @@ namespace FoodDeliveryAPI.Domain.Service
             }
 
             var deliveryPerson = AssignDeliveryPerson();
-              List<Item> items = new List<Item>();
-
-            
-
-            foreach(Guid Id in order.ItemsId)
-            {
-                // LINQ query to find out each item from restaurant 
-
-                IQueryable<Item> it = from item in _context.Items 
-                                      where item.ItemId == Id 
-                                      where item.RestaurantId==order.RestaurantId 
-                                      where item.isOutOfStock == false 
-                                      select item;
-                
-                // getting each result item if item not found it throws exception that is handled in controllor 
-                var i = it.FirstOrDefault() ?? throw new ItemNotFoundException($"can't find any item with id {Id} please remove to continue placing order");
-                
-                // adding each item to list 
-                items.Add( i );
-            }
 
             // creating new order instance to save data
 
-            Order o = new Order()
-            {
-                CustomerId = order.CustomerId,
-                RestaurantId = order.RestaurantId,
-                Items = items,
-                DeliveryPersonId = deliveryPerson.UserId,
-                OrderStatus = OrderStatus.RECEIVED
-            };
+              Order o = new Order()
+              {
+                    CustomerId = customerId,
+                    RestaurantId = restaurantId,
+                    DeliveryPersonId = deliveryPerson.UserId,
+                    OrderStatus = OrderStatus.RECEIVED
+              };
+             
+            o.Items.AddRange(customer.Cart);
 
             // adding order to deliveryPerson's all orders 
             deliveryPerson.AllOrders.Add(o);
@@ -71,6 +69,7 @@ namespace FoodDeliveryAPI.Domain.Service
             customer.Orders.Add(o);
 
             await _context.Orders.AddAsync(o);
+            customer.Cart.Clear();
             await _context.SaveChangesAsync(); 
             return _mapper.Map<OrderDTO>(o);
         }
@@ -149,6 +148,9 @@ namespace FoodDeliveryAPI.Domain.Service
         {
             return await _context
                             .Orders
+                            .Include(a => a.Items)
+                            .Include (a=>a.Restaurant)
+                            .Include(a=>a.Customer)
                             .Where(o=>o.CustomerId == userId)
                             .Select(o=>_mapper.Map<OrderDTO>(o))
                             .ToListAsync();
@@ -158,6 +160,9 @@ namespace FoodDeliveryAPI.Domain.Service
         {
             return await _context
                             .Orders
+                            .Include(a => a.Items)
+                            .Include(a => a.Restaurant)
+                            .Include(a => a.Customer)
                             .Where (o=>o.CustomerId == userId)
                             .Where(o=>o.OrderStatus != OrderStatus.CANCELLED && o.OrderStatus != OrderStatus.DELIVERED)
                             .Select(o=>_mapper.Map<OrderDTO>(o))

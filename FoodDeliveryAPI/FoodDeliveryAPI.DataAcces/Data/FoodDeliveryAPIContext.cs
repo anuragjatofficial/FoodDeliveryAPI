@@ -5,12 +5,6 @@ namespace FoodDeliveryAPI.DataAcces.Data
 {
     public class FoodDeliveryAPIContext : DbContext
     {
-        public FoodDeliveryAPIContext(DbContextOptions<FoodDeliveryAPIContext> options)
-            :base(options) 
-        {
-
-        }
-
         public DbSet<Customer> Customers { get; set; }
 
         public DbSet<DeliveryPerson> DeliveryPersons { get; set; }
@@ -19,9 +13,22 @@ namespace FoodDeliveryAPI.DataAcces.Data
 
         public DbSet<Order> Orders { get; set; }
 
-        public DbSet<Restaurant> Restaurants { get; set;}
+        public DbSet<Restaurant> Restaurants { get; set; }
 
         public DbSet<Admin> Admins { get; set; }
+
+        public FoodDeliveryAPIContext(DbContextOptions<FoodDeliveryAPIContext> options)
+            :base(options) 
+        {
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            base.OnModelCreating(modelBuilder);
+        }
+        
 
     }
 

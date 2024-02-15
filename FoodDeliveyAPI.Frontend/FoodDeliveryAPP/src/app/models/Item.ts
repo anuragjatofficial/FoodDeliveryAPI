@@ -1,6 +1,7 @@
 export interface Item {
-    name:string,
-    description:string,
-    price: number,
-    restaurantId: string
+  itemId: string;
+  name: string;
+  description: string;
+  price: number;
+  restaurantId: string;
 }

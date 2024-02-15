@@ -2,25 +2,44 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Credentials } from '../models/Credentials';
 import { CookieService } from 'ngx-cookie-service';
+import { Observable } from 'rxjs';
+import { Token } from '../models/Token';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   url = `https://localhost:7146`;
-  httpClient:HttpClient = inject(HttpClient);
+  httpClient: HttpClient = inject(HttpClient);
   private cookieService: CookieService = inject(CookieService);
 
+  constructor() {}
 
-  constructor() { }
-
-  signIn(credential:Credentials){
-    return this.httpClient.post(`${this.url}/authentication/admin`,credential);
+  signIn(credential: Credentials):Observable<Token> {
+    return this.httpClient.post<Token>(
+      `${this.url}/authentication/customer`,
+      credential
+    );
   }
 
-  storeInfoInCookie(token:string,userId:string){
-    this.cookieService.set('token', token,undefined,undefined,undefined,true,"Lax");
-    this.cookieService.set('userId', userId,undefined,undefined,undefined,true,"Lax");
+  storeInfoInCookie(token: string, userId: string) {
+    this.cookieService.set(
+      'token',
+      token,
+      undefined,
+      undefined,
+      undefined,
+      true,
+      'Lax'
+    );
+    this.cookieService.set(
+      'userId',
+      userId,
+      undefined,
+      undefined,
+      undefined,
+      true,
+      'Lax'
+    );
   }
-
 }

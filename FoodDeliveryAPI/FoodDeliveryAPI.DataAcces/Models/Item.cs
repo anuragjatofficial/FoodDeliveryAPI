@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace FoodDeliveryAPI.DataAcces.Models
 {
@@ -10,8 +11,6 @@ namespace FoodDeliveryAPI.DataAcces.Models
         public double price { get; set; }
         public bool isOutOfStock { get; set; } = false;
         public Guid RestaurantId { get; set; }
-
-        [JsonIgnore]
         public Restaurant Restaurant { get; set; }
     }
 }

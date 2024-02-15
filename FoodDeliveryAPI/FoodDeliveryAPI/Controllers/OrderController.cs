@@ -21,13 +21,13 @@ namespace FoodDeliveryAPI.Controllers
             _orderService = orderService;
         }
 
-        [HttpPost]
+        [HttpPost("customer/{customerId}")]
         [Authorize(Roles = $"{Role.USER},{Role.SUPER_ADMIN},{Role.ADMIN}")]
-        public async Task<ActionResult<OrderDTO>> PlaceOrder([FromBody] OrderInput order)
+        public async Task<ActionResult<OrderDTO>> PlaceOrder(Guid customerId)
         {
             try
             {
-                return Created("/Order", await _orderService.PlaceOrder(order));
+                return Created("/Order", await _orderService.PlaceOrder(customerId));
                 // validations
                 // 
             }catch (Exception ex)

@@ -9,24 +9,23 @@ import { LoginComponent } from '../auth/login/login.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ItemComponent,CommonModule,HeaderComponent,LoginComponent],
+  imports: [ItemComponent, CommonModule, HeaderComponent, LoginComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  providers:[ItemsService]
+  providers: [ItemsService],
 })
-export class HomeComponent implements OnInit{
-  itemservice :ItemsService = inject(ItemsService);
-  showLoginPage:boolean = false;
-  items:Item[] = [];
+export class HomeComponent implements OnInit {
+  itemservice: ItemsService = inject(ItemsService);
+  showLoginPage: boolean = false;
+  items: Item[] = [];
 
-  ngOnInit(){
-    this.itemservice.getItems().subscribe(res=>{
+  ngOnInit() {
+    this.itemservice.getItems().subscribe((res) => {
       this.items = res;
-    })
+    });
   }
-  
-  toggleLoginPage($event:boolean){
+
+  toggleLoginPage($event: boolean) {
     this.showLoginPage = !this.showLoginPage;
   }
-
 }

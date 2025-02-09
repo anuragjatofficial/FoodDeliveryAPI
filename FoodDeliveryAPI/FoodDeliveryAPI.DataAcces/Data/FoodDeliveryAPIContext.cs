@@ -16,19 +16,6 @@ namespace FoodDeliveryAPI.DataAcces.Data
         public DbSet<Restaurant> Restaurants { get; set; }
 
         public DbSet<Admin> Admins { get; set; }
-        host:
-db.meerjawkcnimfpofsucv.supabase.co
-
-port:
-5432
-
-database:
-postgres
-
-user:
-postgres
-
-
 
         public FoodDeliveryAPIContext(DbContextOptions<FoodDeliveryAPIContext> options)
             :base(options) 

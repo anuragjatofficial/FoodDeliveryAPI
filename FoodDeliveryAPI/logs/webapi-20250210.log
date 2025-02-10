@@ -584,3 +584,9 @@ FROM "Items" AS i
 2025-02-10 16:03:01.288 +00:00  INF  HTTP GET /Item responded 200 in 43.8503 ms
 2025-02-10 16:03:01.289 +00:00  INF  Request finished HTTP/1.1 GET http://localhost:5275/Item - 200 null application/json; charset=utf-8 44.3416ms
 2025-02-10 16:14:18.427 +00:00  INF  Application is shutting down...
+2025-02-10 16:50:15.825 +00:00  WRN  Storing keys in a directory '/home/codespace/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed. For more information go to https://aka.ms/aspnet/dataprotectionwarning
+2025-02-10 16:50:15.864 +00:00  INF  User profile is available. Using '/home/codespace/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-02-10 16:50:15.963 +00:00  INF  Now listening on: http://localhost:5275
+2025-02-10 16:50:15.968 +00:00  INF  Application started. Press Ctrl+C to shut down.
+2025-02-10 16:50:15.968 +00:00  INF  Hosting environment: Development
+2025-02-10 16:50:15.969 +00:00  INF  Content root path: /workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI

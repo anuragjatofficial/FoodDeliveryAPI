@@ -18,17 +18,18 @@ namespace FoodDeliveryAPI.DataAcces.Data
         public DbSet<Admin> Admins { get; set; }
 
         public FoodDeliveryAPIContext(DbContextOptions<FoodDeliveryAPIContext> options)
-            :base(options) 
+            : base(options)
         {
 
         }
+        public FoodDeliveryAPIContext() : base(new DbContextOptions<FoodDeliveryAPIContext>()) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
             base.OnModelCreating(modelBuilder);
         }
-        
+
 
     }
 

@@ -14,14 +14,14 @@ namespace FoodDeliveryAPI.Controllers
         private ICustomerService _customerService;
         private IOrderService _orderService;
         private ILogger<CustomerController> _logger;
-        public CustomerController (ICustomerService customerService,IOrderService orderService,ILogger<CustomerController> logger)
+        public CustomerController(ICustomerService customerService, IOrderService orderService, ILogger<CustomerController> logger)
         {
             _customerService = customerService;
             _orderService = orderService;
             _logger = logger;
         }
 
-        [Authorize(Roles =$"{Role.ADMIN},{Role.SUPER_ADMIN}")]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
         [HttpGet("{Id}")]
         public async Task<ActionResult<CustomerDTO>> GetCustomerById(string Id)
         {
@@ -40,10 +40,10 @@ namespace FoodDeliveryAPI.Controllers
         [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN}")]
         public ActionResult<IEnumerable<CustomerDTO>> GetAllCustomers(
             // to search user by username
-            [FromQuery] 
+            [FromQuery]
             string? username,
             // for sorting on basis of field 
-            [FromQuery] 
+            [FromQuery]
             string sortBy = "username",
             // for sorting order
             [FromQuery]
@@ -52,13 +52,13 @@ namespace FoodDeliveryAPI.Controllers
             [FromQuery]
             int page = 1,
             // to take the item per page
-            [FromQuery] 
+            [FromQuery]
             int pageSize = 10
         )
         {
             try
             {
-                return Ok(_customerService.GetAllCustomers(sortBy,sortOrder,page,pageSize,username));
+                return Ok(_customerService.GetAllCustomers(sortBy, sortOrder, page, pageSize, username));
             }
             catch (Exception ex)
             {
@@ -66,22 +66,23 @@ namespace FoodDeliveryAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        
+
         [HttpPost("signup")]
         [AllowAnonymous]
-        public async Task<ActionResult<CustomerDTO>> AddCustomer(UserDTO user) 
+        public async Task<ActionResult<CustomerDTO>> AddCustomer(UserDTO user)
         {
             try
             {
                 return Accepted(
                     await _customerService
                             .AddCustomer(
-                                new Customer() {
-                                    UserName= user.UserName,
-                                    UserEmail= user.UserEmail,
-                                    Password=user.Password,
-                                    Role=Role.USER,
-                                    CreatedAt=DateTime.Now 
+                                new Customer()
+                                {
+                                    UserName = user.UserName,
+                                    UserEmail = user.UserEmail,
+                                    Password = user.Password,
+                                    Role = Role.USER,
+                                    CreatedAt = DateTime.UtcNow
                                 }
                               )
                 );
@@ -91,44 +92,46 @@ namespace FoodDeliveryAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        
+
         [HttpGet("{customerId}/orders/active")]
         [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN},{Role.USER}")]
-        public async Task<ActionResult<List<OrderDTO>>> GetActiveOrders(Guid customerId) => 
+        public async Task<ActionResult<List<OrderDTO>>> GetActiveOrders(Guid customerId) =>
             Ok(await _orderService.GetActiveOrders(customerId));
 
 
         [HttpGet("{customerId}/orders/all")]
-        [Authorize(Roles =$"{Role.ADMIN},{Role.USER},{Role.SUPER_ADMIN}")]
+        [Authorize(Roles = $"{Role.ADMIN},{Role.USER},{Role.SUPER_ADMIN}")]
         public async Task<ActionResult<List<OrderDTO>>> GetAllOrders(Guid customerId)
         {
             try
             {
-               return Ok(await _orderService.GetAllOrdersPlaced(customerId));
-            }catch(CustomerNotFoundException ex)
+                return Ok(await _orderService.GetAllOrdersPlaced(customerId));
+            }
+            catch (CustomerNotFoundException ex)
             {
                 return BadRequest(ex.Message);
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
-        
+
         [HttpPost("{id}/cart/add")]
         [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN},{Role.USER}")]
-        public async Task<ActionResult<List<ItemDTO>>> AddItemsToCart([FromBody] ItemDTO item,[FromRoute] Guid id)
+        public async Task<ActionResult<List<ItemDTO>>> AddItemsToCart([FromBody] ItemDTO item, [FromRoute] Guid id)
         {
             try
             {
-                return Created( $"{id}/cart/add",await _customerService.addItemsToCart(item, id));
+                return Created($"{id}/cart/add", await _customerService.addItemsToCart(item, id));
             }
-            catch(ItemNotFoundException ex)
+            catch (ItemNotFoundException ex)
             {
 
                 return BadRequest(ex.Message);
 
             }
-            catch(CustomerNotFoundException ex)
+            catch (CustomerNotFoundException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -141,7 +144,7 @@ namespace FoodDeliveryAPI.Controllers
 
         [HttpDelete("{userId}/cart/{itemId}")]
         [Authorize(Roles = $"{Role.ADMIN},{Role.SUPER_ADMIN},{Role.USER}")]
-        public async Task<ActionResult<List<ItemDTO>>> RemoveCartItems(Guid userId,Guid itemId)
+        public async Task<ActionResult<List<ItemDTO>>> RemoveCartItems(Guid userId, Guid itemId)
         {
             try
             {
@@ -156,6 +159,6 @@ namespace FoodDeliveryAPI.Controllers
                 return NotFound(ex.Message);
             }
         }
-       
+
     }
 }

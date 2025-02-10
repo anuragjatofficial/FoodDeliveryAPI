@@ -16,7 +16,7 @@ namespace FoodDeliveryAPI.Controllers
 
         private IOrderService _orderService;
 
-        public DeliveryPersonController (IDeliveryPersonService deliveryPersonService,IOrderService orderService)
+        public DeliveryPersonController(IDeliveryPersonService deliveryPersonService, IOrderService orderService)
         {
             _deliveryPersonService = deliveryPersonService;
             _orderService = orderService;
@@ -28,13 +28,13 @@ namespace FoodDeliveryAPI.Controllers
         {
             try
             {
-                return Created("/deliveryperson",await _deliveryPersonService
+                return Created("/deliveryperson", await _deliveryPersonService
                     .AddDeliveryPerson(new DeliveryPerson()
                     {
                         UserEmail = user.UserEmail,
                         UserName = user.UserName,
                         Password = user.Password,
-                        CreatedAt = DateTime.Now,
+                        CreatedAt = DateTime.UtcNow,
                         Role = Role.DELIVERY_PERSON,
                     })
                 );
@@ -53,11 +53,11 @@ namespace FoodDeliveryAPI.Controllers
             {
                 return Ok(await _deliveryPersonService.GetDeliveryPersonById(id));
             }
-            catch(NoDeliveyPersonFoundException ex)
+            catch (NoDeliveyPersonFoundException ex)
             {
                 return NotFound(ex.Message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -80,17 +80,17 @@ namespace FoodDeliveryAPI.Controllers
         {
             try
             {
-               return Ok(await _deliveryPersonService.GetAllDeliveryPersons(page,pagesize,username,orderBy,sortOrder));
+                return Ok(await _deliveryPersonService.GetAllDeliveryPersons(page, pagesize, username, orderBy, sortOrder));
             }
             catch (Exception ex)
-            { 
+            {
                 return BadRequest(ex.Message);
             }
-            
+
         }
 
         [HttpGet("orders/active")]
-        [Authorize(Roles=$"{Role.DELIVERY_PERSON},{Role.SUPER_ADMIN},{Role.ADMIN}")]
+        [Authorize(Roles = $"{Role.DELIVERY_PERSON},{Role.SUPER_ADMIN},{Role.ADMIN}")]
         public async Task<ActionResult<List<OrderDTO>>> GetActiveOrders(Guid userId)
         {
             return Ok(await _orderService.GetActiveOrders(userId));

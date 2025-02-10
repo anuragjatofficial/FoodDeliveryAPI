@@ -32,7 +32,7 @@ namespace FoodDeliveryAPI.Controllers
 
                 return Created("/admin", _adminService.CreateAdmin(new Admin()
                 {
-                    CreatedAt = DateTime.Now,
+                    CreatedAt = DateTime.UtcNow,
                     Password = user.Password,
                     Role = Role.ADMIN,
                     UserEmail = user.UserEmail,

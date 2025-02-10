@@ -17,3 +17,16 @@ C:/Users/AnuragChoudhary/Downloads/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryA
 /workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/obj/Debug/net8.0/FoodDeliveryAPI.Domain.dll
 /workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/obj/Debug/net8.0/refint/FoodDeliveryAPI.Domain.dll
 /workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/obj/Debug/net8.0/FoodDeliveryAPI.Domain.pdb
+/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/bin/Debug/net8.0/FoodDeliveryAPI.Domain.deps.json
+/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/bin/Debug/net8.0/FoodDeliveryAPI.Domain.dll
+/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/bin/Debug/net8.0/FoodDeliveryAPI.Domain.pdb
+/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/bin/Debug/net8.0/FoodDeliveryAPI.DataAcces.dll
+/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/bin/Debug/net8.0/FoodDeliveryAPI.DataAcces.pdb
+/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/obj/Debug/net8.0/FoodDeliveryAPI.Domain.csproj.AssemblyReference.cache
+/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/obj/Debug/net8.0/FoodDeliveryAPI.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/obj/Debug/net8.0/FoodDeliveryAPI.Domain.AssemblyInfoInputs.cache
+/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/obj/Debug/net8.0/FoodDeliveryAPI.Domain.AssemblyInfo.cs
+/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/obj/Debug/net8.0/FoodDeliveryAPI.Domain.csproj.CoreCompileInputs.cache
+/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/obj/Debug/net8.0/FoodDeliveryAPI.Domain.sourcelink.json
+/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/obj/Debug/net8.0/FoodDeli.E7AE95BA.Up2Date
+/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.Domain/obj/Debug/net8.0/ref/FoodDeliveryAPI.Domain.dll

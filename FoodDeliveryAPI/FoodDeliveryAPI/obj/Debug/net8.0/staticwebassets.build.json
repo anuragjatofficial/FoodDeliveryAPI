@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "67c8S3BTHzzaYTiOlb8+/gGOIhyu3UfjTJw1uhOXJsI=",
+  "Hash": "1Prhwihu+8DeUafHsQF6a78taqsdadSsHHjZA/0cNlo=",
   "Source": "FoodDeliveryAPI",
   "BasePath": "_content/FoodDeliveryAPI",
   "Mode": "Default",
@@ -9,10 +9,10 @@
   "DiscoveryPatterns": [],
   "Assets": [
     {
-      "Identity": "C:\\Users\\AnuragChoudhary\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.1\\staticwebassets\\Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css",
+      "Identity": "/home/codespace/.nuget/packages/microsoft.aspnetcore.components.quickgrid/8.0.1/staticwebassets/Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css",
       "SourceId": "Microsoft.AspNetCore.Components.QuickGrid",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\AnuragChoudhary\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.1\\staticwebassets\\",
+      "ContentRoot": "/home/codespace/.nuget/packages/microsoft.aspnetcore.components.quickgrid/8.0.1/staticwebassets/",
       "BasePath": "_content/Microsoft.AspNetCore.Components.QuickGrid",
       "RelativePath": "Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css",
       "AssetKind": "All",
@@ -25,13 +25,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\AnuragChoudhary\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.1\\staticwebassets\\Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css"
+      "OriginalItemSpec": "/home/codespace/.nuget/packages/microsoft.aspnetcore.components.quickgrid/8.0.1/staticwebassets/Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\AnuragChoudhary\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.1\\staticwebassets\\QuickGrid.razor.js",
+      "Identity": "/home/codespace/.nuget/packages/microsoft.aspnetcore.components.quickgrid/8.0.1/staticwebassets/QuickGrid.razor.js",
       "SourceId": "Microsoft.AspNetCore.Components.QuickGrid",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\AnuragChoudhary\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.1\\staticwebassets\\",
+      "ContentRoot": "/home/codespace/.nuget/packages/microsoft.aspnetcore.components.quickgrid/8.0.1/staticwebassets/",
       "BasePath": "_content/Microsoft.AspNetCore.Components.QuickGrid",
       "RelativePath": "QuickGrid.razor.js",
       "AssetKind": "All",
@@ -44,13 +44,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\AnuragChoudhary\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.1\\staticwebassets\\QuickGrid.razor.js"
+      "OriginalItemSpec": "/home/codespace/.nuget/packages/microsoft.aspnetcore.components.quickgrid/8.0.1/staticwebassets/QuickGrid.razor.js"
     },
     {
-      "Identity": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\FoodDeliveryAPI.styles.css",
+      "Identity": "/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI/obj/Debug/net8.0/scopedcss/bundle/FoodDeliveryAPI.styles.css",
       "SourceId": "FoodDeliveryAPI",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI/obj/Debug/net8.0/scopedcss/bundle/",
       "BasePath": "_content/FoodDeliveryAPI",
       "RelativePath": "FoodDeliveryAPI.styles.css",
       "AssetKind": "All",
@@ -63,7 +63,7 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\AnuragChoudhary\\Downloads\\FoodDeliveryAPI\\FoodDeliveryAPI\\FoodDeliveryAPI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\FoodDeliveryAPI.styles.css"
+      "OriginalItemSpec": "/workspaces/FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI/obj/Debug/net8.0/scopedcss/bundle/FoodDeliveryAPI.styles.css"
     }
   ]
 }

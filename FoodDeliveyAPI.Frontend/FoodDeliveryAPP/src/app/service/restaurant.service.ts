@@ -9,7 +9,7 @@ export class RestaurantService {
   
   http:HttpClient = inject(HttpClient);
   token:string = '';
-  url = `https://localhost:7146`;
+  url = `https://ominous-journey-r965xjqqvxqhp454-5275.app.github.dev`;
 
 
   constructor() { 

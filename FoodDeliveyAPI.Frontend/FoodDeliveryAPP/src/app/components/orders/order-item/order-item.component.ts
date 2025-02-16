@@ -9,7 +9,7 @@ import { Order } from '../../../models/Order';
   <div class="border-2 rounded-lg h-full w-[400px]">
   <div class="w-full h-[60%]">
     <img
-      src="https://source.unsplash.com/random/?food,{{ 'item.name' }}"
+      src="https://loremflickr.com/random?food,{{ 'item.name' }}"
       alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
       class="rounded-t-lg h-full w-full object-cover"
     />

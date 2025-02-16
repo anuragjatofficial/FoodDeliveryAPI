@@ -19,7 +19,7 @@ export class ItemsService {
     }
   }
 
-  url = `https://localhost:7146`;
+  url = `https://ominous-journey-r965xjqqvxqhp454-5275.app.github.dev`;
 
   private http: HttpClient = inject(HttpClient);
 

@@ -129,11 +129,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseSerilogRequestLogging();
 
-app.UseAuthentication();
-
 // applying cors policy 
 
 app.UseCors("corspolicy");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

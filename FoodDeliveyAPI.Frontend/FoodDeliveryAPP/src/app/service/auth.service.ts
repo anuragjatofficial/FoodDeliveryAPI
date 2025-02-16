@@ -9,7 +9,7 @@ import { Token } from '../models/Token';
   providedIn: 'root',
 })
 export class AuthService {
-  url = `https://localhost:7146`;
+  url = `https://ominous-journey-r965xjqqvxqhp454-5275.app.github.dev`;
   httpClient: HttpClient = inject(HttpClient);
   private cookieService: CookieService = inject(CookieService);
 

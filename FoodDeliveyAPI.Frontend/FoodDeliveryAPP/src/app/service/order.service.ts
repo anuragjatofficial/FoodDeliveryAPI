@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class OrderService {
-  url = `https://localhost:7146`;
+  url = `https://ominous-journey-r965xjqqvxqhp454-5275.app.github.dev`;
   httpClient: HttpClient = inject(HttpClient);
 
   private authToken: string = '';

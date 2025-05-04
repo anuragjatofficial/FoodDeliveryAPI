@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Item } from '../models/Item';
 import { Observable, map } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class ItemsService {
     }
   }
 
-  url = `https://ominous-journey-r965xjqqvxqhp454-5275.app.github.dev`;
+  url = environment.apiUrl;
 
   private http: HttpClient = inject(HttpClient);
 

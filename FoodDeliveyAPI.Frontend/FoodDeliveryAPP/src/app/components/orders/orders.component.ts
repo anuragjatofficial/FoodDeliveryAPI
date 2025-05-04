@@ -4,11 +4,12 @@ import { OrderService } from '../../service/order.service';
 import { Order } from '../../models/Order';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { OrderItemComponent } from './order-item/order-item.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [HeaderComponent, RouterModule,OrderItemComponent],
+  imports: [HeaderComponent, RouterModule, OrderItemComponent, CommonModule],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css',
 })
@@ -19,11 +20,12 @@ export class OrdersComponent implements OnInit {
   showOrders: string = 'all';
   allOrders: Order[] = [];
   activeOrders: Order[] = [];
-  
 
   ngOnInit(): void {
-    this.showOrders =
-      this.route.snapshot.paramMap.get('status') ?? this.showOrders;
+    this.route.paramMap.subscribe((params) => {
+      this.showOrders = params.get('status') ?? 'all';
+    });
+
     this.fetchAllOrders();
     this.fetchActiveOrders();
   }
@@ -31,10 +33,8 @@ export class OrdersComponent implements OnInit {
   fetchAllOrders() {
     this.orderService.getAllOrders().subscribe({
       next: (orders: any) => {
-        // this.allOrders = orders;
+        this.allOrders = orders;
         console.log(orders);
-        
-        
       },
       error: (err) => {
         console.log(err);

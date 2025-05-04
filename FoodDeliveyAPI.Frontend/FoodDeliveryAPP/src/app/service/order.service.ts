@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Order } from '../models/Order';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  url = `https://ominous-journey-r965xjqqvxqhp454-5275.app.github.dev`;
+  url = environment.apiUrl;
   httpClient: HttpClient = inject(HttpClient);
 
   private authToken: string = '';

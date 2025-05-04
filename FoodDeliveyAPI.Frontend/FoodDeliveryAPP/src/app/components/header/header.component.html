@@ -3,7 +3,11 @@
     <div class="flex justify-between h-16">
       <div class="flex">
         <div class="flex-shrink-0 flex items-center">
-          <img class="h-10 w-10" src="../../../assets/images/quickbite.png" alt="QuickBite Logo" />
+          <img
+            class="h-10 w-10"
+            src="../../../assets/images/quickbite.png"
+            alt="QuickBite Logo"
+          />
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
           <a
@@ -49,9 +53,18 @@
             *ngIf="showUserMenu"
             class="absolute right-0 z-50 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
           >
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Profile</a>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Settings</a>
-            <a href="#" (click)="signOut()" class="block px-4 py-2 text-sm text-gray-700">Sign out</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700"
+              >Profile</a
+            >
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700"
+              >Settings</a
+            >
+            <a
+              href="#"
+              (click)="signOut()"
+              class="block px-4 py-2 text-sm text-gray-700"
+              >Sign out</a
+            >
           </div>
         </div>
         } @else {
@@ -63,10 +76,23 @@
         </button>
         }
         <div class="sm:hidden ml-4">
-          <button (click)="toggleHeader()" class="text-gray-500 hover:text-gray-700 focus:outline-none">
-            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16" />
+          <button
+            (click)="toggleHeader()"
+            class="text-gray-500 hover:text-gray-700 focus:outline-none"
+          >
+            <svg
+              class="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           </button>
         </div>
@@ -76,13 +102,40 @@
 
   <!-- Mobile Menu -->
   <div *ngIf="showHeaderMenu" class="sm:hidden px-2 pt-2 pb-3 space-y-1">
-    <a [routerLink]="['/']" routerLinkActive="bg-indigo-100 text-indigo-700"
-      class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-100">Home</a>
-    <a [routerLink]="['/restaurants']" routerLinkActive="bg-indigo-100 text-indigo-700"
-      class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-100">Restaurants</a>
-    <a [routerLink]="['/cart']" routerLinkActive="bg-indigo-100 text-indigo-700"
-      class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-100">Cart</a>
-    <a [routerLink]="['/orders', 'all']" routerLinkActive="bg-indigo-100 text-indigo-700"
-      class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-100">Orders</a>
+    <a
+      [routerLink]="['/']"
+      routerLinkActive="bg-indigo-100 text-indigo-700"
+      class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-100"
+      >Home</a
+    >
+    <a
+      [routerLink]="['/restaurants']"
+      routerLinkActive="bg-indigo-100 text-indigo-700"
+      class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-100"
+      >Restaurants</a
+    >
+    <a
+      [routerLink]="['/cart']"
+      routerLinkActive="bg-indigo-100 text-indigo-700"
+      class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-100"
+      >Cart</a
+    >
+    <a
+      [routerLink]="['/orders', 'all']"
+      routerLinkActive="bg-indigo-100 text-indigo-700"
+      class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-100"
+      >Orders</a
+    >
   </div>
 </nav>
+@if (showLoginForm) {
+<div
+  class="w-full h-full backdrop-blur-sm fixed top-0 left-0 duration-1000 delay-1000 transition-all ease-in-out"
+>
+  <app-login
+    class="fixed left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%]"
+    (ToggleLogin)="toggleLoginForm($event)"
+    (showToastEvent)="showToast($event)"
+  ></app-login>
+</div>
+}

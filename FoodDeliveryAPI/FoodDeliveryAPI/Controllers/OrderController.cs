@@ -28,8 +28,6 @@ namespace FoodDeliveryAPI.Controllers
             try
             {
                 return Created("/Order", await _orderService.PlaceOrder(customerId));
-                // validations
-                // 
             }catch (Exception ex)
             {
                  return BadRequest(ex.Message);

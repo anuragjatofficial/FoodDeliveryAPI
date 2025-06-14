@@ -15,4 +15,5 @@ export const routes: Routes = [
   { path: 'restaurants/:id', component: RestaurantItemsPageComponent },
   { path: 'cart', component: CartComponent },
   { path: 'orders/:status', component: OrdersComponent },
+  { path: 'orders', redirectTo: 'orders/all', pathMatch: 'full' },
 ];

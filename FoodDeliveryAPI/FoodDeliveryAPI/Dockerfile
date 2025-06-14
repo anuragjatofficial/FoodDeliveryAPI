@@ -1,26 +1,33 @@
-# Use the official .NET SDK image as a base image
+# Build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
 
-# Set the working directory in the container
-WORKDIR /app
+# Copy solution and project files first for better layer caching
+COPY FoodDeliveryAPI/FoodDeliveryAPI.sln .
+COPY FoodDeliveryAPI/FoodDeliveryAPI/FoodDeliveryAPI.csproj ./FoodDeliveryAPI/
+COPY FoodDeliveryAPI/FoodDeliveryAPI.DataAcces/FoodDeliveryAPI.DataAcces.csproj ./FoodDeliveryAPI.DataAcces/
+COPY FoodDeliveryAPI/FoodDeliveryAPI.Domain/FoodDeliveryAPI.Domain.csproj ./FoodDeliveryAPI.Domain/
 
-# Copy the project files to the container
-COPY . .
+# Restore NuGet packages
+RUN dotnet restore
 
-# Build the application
-RUN dotnet publish -c Release -o out
+# Copy everything else
+COPY FoodDeliveryAPI/ .
 
-# Use the official .NET Runtime image as the final image
+# Publish the API project
+WORKDIR /src/FoodDeliveryAPI
+RUN dotnet publish -c Release -o /app/publish
+
+# Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
-
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy the published application from the build image
-COPY --from=build /app/out .
+# Copy the published output
+COPY --from=build /app/publish .
 
-# Expose the port the app will run on
+# Expose ports
 EXPOSE 80
+EXPOSE 443
 
-# Define the entry point for the application
+# Set the entry point
 ENTRYPOINT ["dotnet", "FoodDeliveryAPI.dll"]

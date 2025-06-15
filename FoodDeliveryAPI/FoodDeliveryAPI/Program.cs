@@ -25,7 +25,7 @@ builder.Configuration
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .Enrich.FromLogContext()
-    .WriteTo.Console() // 👈 logs go to stdout
+    .WriteTo.Console() 
     .CreateLogger();
 
 builder.Host.UseSerilog();

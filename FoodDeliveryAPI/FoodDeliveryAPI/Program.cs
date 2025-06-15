@@ -10,44 +10,27 @@ using Serilog;
 using System.Text;
 using System.Text.Json.Serialization;
 
-// Optional: Loads from .env if exists (for dev/Docker)
-DotNetEnv.Env.Load();
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Load appsettings + env vars
-builder.Configuration
-    .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-    .AddEnvironmentVariables();
+// Add services to the container.
 
-// Serilog for Console Logging
 Log.Logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .Enrich.FromLogContext()
-    .WriteTo.Console() 
-    .CreateLogger();
+       .ReadFrom.Configuration(builder.Configuration)
+       .Enrich.FromLogContext()
+       .CreateLogger();
+// builder.Logging.ClearProviders();
+// builder.Logging.AddSerilog(logger);
 
 builder.Host.UseSerilog();
 
-// Register Services
-builder.Services.AddControllers()
-    .AddJsonOptions(opt =>
-    {
-        opt.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-    });
-
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<FoodDeliveryAPIContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("FoodDeliveryAPI") ?? throw new ArgumentException("can't find connection string")));
 
-// DB Context
-var dbConn = builder.Configuration.GetConnectionString("FoodDeliveryAPI");
-if (string.IsNullOrEmpty(dbConn)) throw new Exception("Database connection string is missing");
+// scoped service classes 
 
-builder.Services.AddDbContext<FoodDeliveryAPIContext>(options =>
-    options.UseNpgsql(dbConn));
-
-// Scoped Services
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
@@ -56,80 +39,108 @@ builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IItemService, ItemService>();
 
-// JWT Authentication
+// to exclude null from every json body
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+});
+
 var secretKey = builder.Configuration["Jwt:Key"];
 var issuer = builder.Configuration["Jwt:Issuer"];
 var audience = builder.Configuration["Jwt:Audience"];
 
-if (string.IsNullOrWhiteSpace(secretKey)) throw new Exception("JWT Key missing in env");
-if (string.IsNullOrWhiteSpace(issuer)) throw new Exception("JWT Issuer missing in env");
+builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
+{
+    build.WithOrigins("*").AllowAnyHeader().AllowAnyMethod().WithExposedHeaders("Records");
+}));
 
-builder.Services.AddAuthentication(opt =>
+// to add jwtbearer as authentication scheme 
+
+builder.Services.AddAuthentication(item =>
 {
-    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(opt =>
+    item.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    item.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(item =>
 {
-    opt.RequireHttpsMetadata = true;
-    opt.SaveToken = true;
-    opt.TokenValidationParameters = new TokenValidationParameters
+    item.RequireHttpsMetadata = true;
+    item.SaveToken = true;
+    item.TokenValidationParameters = new TokenValidationParameters()
     {
         ValidateIssuer = true,
-        ValidateAudience = true,
         ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey ?? "")),
+        ValidateAudience = true,
         ValidateLifetime = true,
-        ValidIssuer = issuer,
-        ValidAudience = audience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
     };
 });
 
-// CORS
-builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
-{
-    build.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().WithExposedHeaders("Records");
-}));
+// swagger authentication defination 
 
-// Swagger with JWT auth
 builder.Services.AddSwaggerGen(options =>
 {
-    options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
-    {
-        Name = "Authorization",
-        Description = "Enter 'Bearer <JWT>'",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
-    });
-
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
+    options
+    .AddSecurityDefinition(
+        name: JwtBearerDefaults.AuthenticationScheme,
+        securityScheme: new OpenApiSecurityScheme
         {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Id = JwtBearerDefaults.AuthenticationScheme,
-                    Type = ReferenceType.SecurityScheme
-                }
-            },
-            new string[] {}
+            Name = "Authorization",
+            Description = "Enter Bearer Authorization: `Bearer Generated-JWT-Token`",
+            In = ParameterLocation.Header,
+            Type = SecuritySchemeType.ApiKey,
+            Scheme = "Bearer"
         }
-    });
+     );
+
+    options
+        .AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = JwtBearerDefaults.AuthenticationScheme
+                    }
+                },
+                new String[]{}
+            }
+        });
 });
 
-// AutoMapper
+// added assembly to configure automapper 
+
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+
 
 var app = builder.Build();
 
-// Middleware pipeline
-app.UseSwagger();
-app.UseSwaggerUI();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.UseSerilogRequestLogging();
+
+// applying cors policy 
+
 app.UseCors("corspolicy");
+
 app.UseAuthentication();
+
 app.UseAuthorization();
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();

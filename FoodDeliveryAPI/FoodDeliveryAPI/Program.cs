@@ -27,7 +27,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<FoodDeliveryAPIContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("FoodDeliveryAPI") ?? throw new ArgumentException("can't find connection string")));
+var connectionString = builder.Configuration.GetConnectionString("FoodDeliveryAPI");
+Console.Write($"{connectionString} this is connectionString");
+builder.Services.AddDbContext<FoodDeliveryAPIContext>(options => options.UseNpgsql(connectionString ?? throw new ArgumentException("can't find connection string")));
 
 // scoped service classes 
 

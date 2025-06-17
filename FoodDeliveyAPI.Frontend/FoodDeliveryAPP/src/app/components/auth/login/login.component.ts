@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { BeatLoaderComponent } from '../../loaders/beat-loader/beat-loader.component';
 import { Token } from '../../../models/Token';
@@ -30,8 +30,8 @@ export class LoginComponent {
   constructor() {}
 
   credentials: FormGroup = new FormGroup({
-    username: new FormControl<string>(''),
-    password: new FormControl<string>(''),
+    username: new FormControl<string>('',[Validators.required, Validators.minLength(3)]),
+    password: new FormControl<string>('',[Validators.required]),
   });
 
   signIn() {

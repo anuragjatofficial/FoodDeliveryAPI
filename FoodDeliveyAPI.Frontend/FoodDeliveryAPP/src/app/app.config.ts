@@ -1,7 +1,12 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import {
   BrowserAnimationsModule,
   provideAnimations,
@@ -14,7 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     importProvidersFrom(HttpClientModule),
     importProvidersFrom(BrowserAnimationsModule),
-    { provide: HTTP_INTERCEPTORS, useFactory: loaderInterceptor, multi: true },
+    provideHttpClient(withInterceptors([loaderInterceptor])),
     // Add any other providers you need here
   ],
 };

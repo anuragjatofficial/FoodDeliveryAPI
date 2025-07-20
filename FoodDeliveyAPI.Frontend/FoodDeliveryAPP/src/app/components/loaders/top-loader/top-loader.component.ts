@@ -9,7 +9,7 @@ import { LoaderService } from '../../../service/loader/loader.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: ` <div
     *ngIf="loader.loading$ | async"
-    class="fixed top-0 left-0 w-full h-1 z-50"
+    class="fixed top-0 left-0 w-full h-1.5 z-50"
   >
     <div
       class="h-full bg-indigo-600 animate-pulse transition-all duration-300"

@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'https://localhost:7146',
+  apiUrl: 'https://fooddeliveryapi-8prq.onrender.com',
 };

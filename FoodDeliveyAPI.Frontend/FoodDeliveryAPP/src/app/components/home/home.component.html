@@ -1,36 +1,38 @@
-<main class="h-full bg-gray-100">
-  <div class="min-h-full h-full">
-    <app-header></app-header>
-    <!-- @if (showLoginPage) {
-      <div class=" w-full  h-full  backdrop-blur-sm  fixed top-0 left-0 duration-1000 delay-1000 transition-all ease-in-out">
-        <app-login class="fixed left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%]"(ToggleLogin)="toggleLoginPage($event)" ></app-login> 
-      </div> 
-    } -->
-    <header class="bg-white shadow">
-      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900">
-          Explore food items
-        </h1>
-      </div>
-    </header>
-    <main>
-      <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 px-5">
-        <div class="w-full">
-          <div class="sm:px-3 md:px-5 lg:px-7 xl:9">
-            <h2 class="font-semibold text-2xl">Products</h2>
-            <div
-              class="w-full grid gap-x-3 gap-y-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-flow-row"
-            >
-              <app-item
-                [item]="item"
-                *ngFor="let item of items"
-                [addOrDelete]="'ADD'"
-                class="h-[500px]"
-              ></app-item>
-            </div>
+<main class="min-h-screen bg-gray-50 flex flex-col">
+  <!-- Header -->
+  <app-header></app-header>
+
+  <!-- Hero Section (Landing) -->
+  <app-landing></app-landing>
+
+  <!-- Explore Food Items Section -->
+  <section class="bg-white shadow-lg mt-[-4rem] z-10 relative rounded-t-3xl">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <h1
+        class="text-3xl md:text-4xl font-extrabold tracking-tight text-indigo-700 mb-6 text-center"
+      >
+        Explore Food Items
+      </h1>
+      <div class="w-full">
+        <div class="sm:px-3 md:px-5 lg:px-7 xl:px-9">
+          <h2 class="font-semibold text-2xl text-gray-900 mb-4">Products</h2>
+          <div
+            class="w-full grid gap-x-6 gap-y-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-flow-row"
+          >
+            <app-item
+              [item]="item"
+              *ngFor="let item of items"
+              [addOrDelete]="'ADD'"
+              class="h-[500px] bg-white rounded-xl shadow hover:shadow-lg transition duration-200 border border-gray-100"
+            ></app-item>
           </div>
         </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-gray-100 text-center text-gray-500 text-sm mt-auto">
+    &copy; 2025 QuickBite. All rights reserved.
+  </footer>
 </main>

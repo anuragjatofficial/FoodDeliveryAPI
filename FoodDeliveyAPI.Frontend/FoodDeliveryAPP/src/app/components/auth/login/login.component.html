@@ -2,11 +2,13 @@
   class="w-[400px] mx-auto shadow-lg px-7 py-5 rounded-lg flex items-center bg-white"
 >
   <div class="w-full">
-    <div
-      class="flex items-end flex-col cursor-pointer"
-      (click)="togglePage()"
-    >
-      <span class="p-2 hover:bg-slate-100 rounded-md">
+    <div class="flex items-end flex-col">
+      <button
+        type="button"
+        aria-label="Close"
+        (click)="togglePage()"
+        class="p-2 hover:bg-slate-100 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -21,7 +23,7 @@
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
-      </span>
+      </button>
     </div>
     <div class="flex-shrink-0 flex">
       <img
@@ -48,27 +50,58 @@
             class="block w-full rounded-md border-0 focus:outline-none px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
           <!-- Username validation error -->
-          <div *ngIf="credentials.get('username')?.touched && credentials.get('username')?.invalid" class="text-red-500 text-xs mt-1">
-            <span *ngIf="credentials.get('username')?.errors?.['required']">Username is required.</span>
-            <span *ngIf="credentials.get('username')?.errors?.['minlength']">Username must be at least 3 characters.</span>
+          <div
+            *ngIf="
+              credentials.get('username')?.touched &&
+              credentials.get('username')?.invalid
+            "
+            class="text-red-500 text-xs mt-1"
+          >
+            <span *ngIf="credentials.get('username')?.errors?.['required']"
+              >Username is required.</span
+            >
+            <span *ngIf="credentials.get('username')?.errors?.['minlength']"
+              >Username must be at least 3 characters.</span
+            >
           </div>
         </div>
       </div>
       <div class="flex flex-col mb-3">
         <label for="password" class="font-medium pb-3">Password</label>
-        <div class="mb-3">
+        <div class="mb-3 relative flex items-center">
           <input
-            type="password"
+            [type]="showPassword ? 'text' : 'password'"
             formControlName="password"
             id="password"
             autocomplete="current-password"
-            class="block w-full rounded-md border-0 focus:outline-none px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 focus:outline-none px-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pr-10"
           />
-          <!-- Password validation error -->
-          <div *ngIf="credentials.get('password')?.touched && credentials.get('password')?.invalid" class="text-red-500 text-xs mt-1">
-            <span *ngIf="credentials.get('password')?.errors?.['required']">Password is required.</span>
-            <span *ngIf="credentials.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</span>
-          </div>
+          <!-- Toggle password visibility -->
+          <span
+            class="absolute right-3 cursor-pointer text-gray-400 hover:text-indigo-600"
+            style="top: 50%; transform: translateY(-50%)"
+            (click)="togglePassword()"
+          >
+            <i
+              class="pi"
+              [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'"
+            ></i>
+          </span>
+        </div>
+        <!-- Password validation error -->
+        <div
+          *ngIf="
+            credentials.get('password')?.touched &&
+            credentials.get('password')?.invalid
+          "
+          class="text-red-500 text-xs mt-1"
+        >
+          <span *ngIf="credentials.get('password')?.errors?.['required']"
+            >Password is required.</span
+          >
+          <span *ngIf="credentials.get('password')?.errors?.['minlength']"
+            >Password must be at least 6 characters.</span
+          >
         </div>
       </div>
       <div class="flex flex-col mb-3">

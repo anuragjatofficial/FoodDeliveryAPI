@@ -13,11 +13,18 @@ import { LoginComponent } from '../auth/login/login.component';
 import { ToastModule } from 'primeng/toast';
 import { Message, MessageService } from 'primeng/api';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { A11yModule } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, CommonModule, LoginComponent, ToastModule],
+  imports: [
+    RouterModule,
+    CommonModule,
+    LoginComponent,
+    ToastModule,
+    A11yModule,
+  ],
   animations: [
     trigger('menuAnimation', [
       transition(':enter', [
@@ -63,6 +70,13 @@ export class HeaderComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
     this.showUserMenu = false;
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscape(event: KeyboardEvent) {
+    if (this.showLoginForm) {
+      this.showLoginForm = false;
+    }
   }
 
   toggleLoginForm(event: boolean) {

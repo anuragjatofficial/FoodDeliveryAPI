@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { Item } from '../../models/Item';
 import { HeaderComponent } from '../header/header.component';
 import { LoginComponent } from '../auth/login/login.component';
+import { LandingComponent } from "../landing/landing.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ItemComponent, CommonModule, HeaderComponent, LoginComponent],
+  imports: [ItemComponent, CommonModule, HeaderComponent, LoginComponent, LandingComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   providers: [ItemsService],

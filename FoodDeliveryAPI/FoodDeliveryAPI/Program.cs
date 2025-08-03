@@ -129,6 +129,16 @@ app.UseSwaggerUI();
 
 app.UseSerilogRequestLogging();
 
+// Custom request logging middleware
+app.Use(async (context, next) =>
+{
+    var method = context.Request.Method;
+    var path = context.Request.Path;
+    var query = context.Request.QueryString.HasValue ? context.Request.QueryString.Value : "";
+    Log.Information("Received {Method} request for {Path} with params {Query}", method, path, query);
+    await next();
+});
+
 // applying cors policy 
 
 app.UseCors("corspolicy");
